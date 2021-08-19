@@ -69,3 +69,36 @@ We created our organization and created the project repository. and now it's rea
 - What is your Git flow?
 Done by creating a sub-branch to bush all work on it. not in the main. Also, every member will work in a separate repository and push the work to the group repository after we make sure it's completely right.
 
+
+## User Stories
+- as a user (patient) i want to enter the web application that save my privacy 
+- as a doctor i prefer to meet my patient online that keep people more comfortable
+- as a user i prefer to find people to support me and understand what i suffer 
+- as a doctor i prefer to serve people online thats enable me to serve and to get more consultation from patients 
+- as a user i like the idea for chooes my doctor online thats provide more options for me 
+
+## Software Requirements
+* Vision: create a web application to support people whos need mental help 
+* Scope (In/Out):
+ - web application about mental-healthcare 
+ - we have a alot of features to help pationt to get the best services 
+ - we have a page to aware people about mental health and know more about mental-healthcare
+ - we have support group to help pationt to get support from others pationt  
+ - we have a part of consultation to get consultante from therapists
+* Stretch : schadualing an appointment for specific user with specific therepist 
+
+
+
+## WireFrame 
+
+![home](img/project1.png)
+![home](img/project2.png)
+![home](img/project3.png)
+![home](img/project4.png)
+![home](img/project5.png)
+
+## Domain Modeling
+![home](img/DataBase.PNG)
+
+## Make an Database Schema Diagram
+![home](img/Database3.PNG)
