@@ -13,17 +13,21 @@ public class Response {
     private String body;
     @CreationTimestamp
     private Date time;
+    private boolean isTherapists;
+
 
     @ManyToOne
     private Consultation consultation;
 
     public Response() {}
 
-    public Response(String body, Date time , Consultation consultation) {
+
+    public Response(String body, boolean isTherapists  , Consultation consultation) {
         this.body = body;
-        this.time = time;
+        this.isTherapists = isTherapists;
         this.consultation=consultation;
     }
+
 
     public Integer getId() {
         return id;
@@ -43,6 +47,14 @@ public class Response {
 
     public void setTime(Date time) {
         this.time = time;
+    }
+
+    public boolean isTherapists() {
+        return isTherapists;
+    }
+
+    public void setTherapists(boolean therapists) {
+        isTherapists = therapists;
     }
 }
 

@@ -9,17 +9,19 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
+//@Table(uniqueConstraints={@UniqueConstraint(columnNames = {"id_1" , "id_2"})})
 public class ApplicationUser implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(unique = true)
+//    @UniqueConstraint(columnNames={"username"})   // for check username if it's in the therapists table or not
     private String username;
     private String password;
     private String firstname;
     private String lastname;
-    private Date dateOfBirth;
+    private String dateOfBirth;
     private String image;
     private String country;
 
@@ -37,7 +39,7 @@ public class ApplicationUser implements UserDetails {
     }
 
     //constructor
-    public ApplicationUser(String username, String password, String firstname, String lastname, Date dateOfBirth, String image, String country) {
+    public ApplicationUser(String username, String password, String firstname, String lastname, String dateOfBirth, String image, String country) {
         this.username = username;
         this.password = password;
         this.firstname = firstname;
@@ -117,11 +119,11 @@ public class ApplicationUser implements UserDetails {
         this.lastname = lastname;
     }
 
-    public Date getDateOfBirth() {
+    public String getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
+    public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 

@@ -1,6 +1,7 @@
 package com.example.mentalhealth.models;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import javax.xml.crypto.Data;
@@ -24,6 +25,7 @@ public class Consultation {
     @ManyToOne        //relationship with therapists
     private Therapists therapists;
 
+
     @OneToMany (mappedBy = "consultation")   //relationship with response
     private List<Response> responses ;
 
@@ -31,9 +33,8 @@ public class Consultation {
     public Consultation() {}
 
     //constructor
-    public Consultation(String body, Date time, boolean taken, ApplicationUser applicationUser, Therapists therapists) {
+    public Consultation(String body, boolean taken, ApplicationUser applicationUser, Therapists therapists) {
         this.body = body;
-        this.time = time;
         this.taken = taken;
         this.applicationUser = applicationUser;
         this.therapists = therapists;
@@ -67,5 +68,29 @@ public class Consultation {
 
     public void setTaken(boolean taken) {
         this.taken = taken;
+    }
+
+    public ApplicationUser getApplicationUser() {
+        return applicationUser;
+    }
+
+    public void setApplicationUser(ApplicationUser applicationUser) {
+        this.applicationUser = applicationUser;
+    }
+
+    public Therapists getTherapists() {
+        return therapists;
+    }
+
+    public void setTherapists(Therapists therapists) {
+        this.therapists = therapists;
+    }
+
+    public List<Response> getResponses() {
+        return responses;
+    }
+
+    public void setResponses(List<Response> responses) {
+        this.responses = responses;
     }
 }
