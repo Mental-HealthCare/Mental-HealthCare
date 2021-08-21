@@ -1,23 +1,17 @@
 package com.example.mentalhealth.controllers;
 
-import com.example.mentalhealth.models.ApplicationUser;
-import com.example.mentalhealth.models.Consultation;
-import com.example.mentalhealth.models.Response;
-import com.example.mentalhealth.models.Therapists;
-import com.example.mentalhealth.repository.ApplicationUserRepository;
-import com.example.mentalhealth.repository.ConsultationRepository;
-import com.example.mentalhealth.repository.ResponseRepository;
-import com.example.mentalhealth.repository.TherapistsRepository;
+import com.example.mentalhealth.models.*;
+import com.example.mentalhealth.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -33,29 +27,34 @@ public class TherapistsController {
     ApplicationUserRepository applicationUserRepository;
     @Autowired
     ResponseRepository responseRepository;
+    @Autowired
+    MessagesRepository messagesRepository;
+    @Autowired
+    ChatRepository chatRepository;
 
-
-//    @GetMapping("/signup")
-//    public String getSignUpPage(){return "signup.html";}
-
-
-    @GetMapping("/kkkk")
-    public String  addNewUser () {
-        Therapists therapists = new Therapists("z" , bCryptPasswordEncoder.encode("z") , "z" , "z" ,"z" ,"z","z","z" , 1);
-        therapistsRepository.save(therapists);
-        return "home.html";
+    @PostMapping("/signupTherapists")
+    public RedirectView addNewUser (@ModelAttribute Therapists user) {
+        ApplicationUser existUserName = applicationUserRepository.findByUsername(user.getUsername());
+        if (existUserName == null) {
+            user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+            therapistsRepository.save(user);
+        } else {     // handling error message exist username
+            System.out.println("Exist username");
+        }
+        return new RedirectView ("/login");
     }
 
+    @GetMapping("/allTherapists")
+    public String getAllTherapists(Model model) {
+        Iterable allTherapists = therapistsRepository.findAll();
+        model.addAttribute("allTherapists", allTherapists);
+        return "allTherapists.html";
+    }
 
-
-//    @GetMapping("/login")
-//    public String getLoginPage(Principal p, Model model){
-//        try{
-//            model.addAttribute("userData",p.getName());
-//        }catch (NullPointerException e){
-//            model.addAttribute("userData","");
-//        }
-//        return "login.html";
-//    }
-
+    @GetMapping("/therapistsProfile/{id}")
+    public String showTherapistsProfile(@PathVariable Integer id){
+        Therapists oneTh = therapistsRepository.findById(id).get();
+        System.out.println(oneTh);
+        return "therapistsProfile";
+    }
 }

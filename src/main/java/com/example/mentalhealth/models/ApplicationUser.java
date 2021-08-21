@@ -9,14 +9,12 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-//@Table(uniqueConstraints={@UniqueConstraint(columnNames = {"id_1" , "id_2"})})
 public class ApplicationUser implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(unique = true)
-//    @UniqueConstraint(columnNames={"username"})   // for check username if it's in the therapists table or not
     private String username;
     private String password;
     private String firstname;

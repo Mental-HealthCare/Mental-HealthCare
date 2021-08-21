@@ -1,7 +1,9 @@
 package com.example.mentalhealth.controllers;
 
 import com.example.mentalhealth.models.ApplicationUser;
+import com.example.mentalhealth.models.Therapists;
 import com.example.mentalhealth.repository.ApplicationUserRepository;
+import com.example.mentalhealth.repository.TherapistsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -19,32 +21,21 @@ public class ApplicationUserController{
 
     @Autowired
     ApplicationUserRepository applicationUserRepository;
-
     @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
+    @Autowired
+    TherapistsRepository therapistsRepository;
 
-    @GetMapping("/signup")
-    public String getSignUpPage(){return "signup.html";}
-
-
-    @PostMapping("/signup")
+    @PostMapping("/signupUser")
     public RedirectView addNewUser (@ModelAttribute ApplicationUser user) {
+        Therapists existUserName = therapistsRepository.findByUsername(user.getUsername());
+        if (existUserName == null) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        applicationUserRepository.save(user);
+            applicationUserRepository.save(user);
+        } else {    // handling error message exist username
+            System.out.println("Exist username");
+        }
         return new RedirectView ("/login");
     }
-
-
-    @GetMapping("/login")
-    public String getLoginPage(Principal p, Model model){
-        try{
-            model.addAttribute("userData",p.getName());
-        }catch (NullPointerException e){
-            model.addAttribute("userData","");
-        }
-        return "login.html";
-    }
-
-
 }
 

@@ -8,37 +8,68 @@
 
 <h1>Sign Up Form</h1>
 
+<form action="/signupUser"  method="post" >
+
+    <label for="username">User Name</label>
+    <input id="username" name="username" type="text" />
+    <br/>
+    <label for="password">Password</label>
+    <input id="password" name="password" type="password" />
+    <br/>
+    <label for="firstname">First Name</label>
+    <input id="firstname" name="firstname" type="text" />
+    <br/>
+    <label for="lastname">Last Name</label>
+    <input id="lastname" name="lastname" type="text" />
+    <br/>
+    <label for="dateOfBirth">Date Of Birth</label>
+    <input id="dateOfBirth" name="dateOfBirth" type="date" max="2005-01-01" />
+    <br/>
+    <label for="country">country</label>
+    <input id="country" name="country" type="text" />
+    <br/>
+<!--    <label for="image">image</label>-->
+    <input id="image" name="image" type="hidden" value="xyz"/>
+
+    <button type="submit">Sign up</button>
+</form>
+<br/>
+
+<form action="/signupTherapists"  method="post" >
+
+    <label for="username1">User Name</label>
+    <input id="username1" name="username" type="text" />
+    <br/>
+    <label for="password1">Password</label>
+    <input id="password1" name="password" type="password" />
+    <br/>
+    <label for="firstname1">First Name</label>
+    <input id="firstname1" name="firstname" type="text" />
+    <br/>
+    <label for="lastname1">Last Name</label>
+    <input id="lastname1" name="lastname" type="text" />
+    <br/>
+    <label for="dateOfBirth1">Date Of Birth</label>
+    <input id="dateOfBirth1" name="dateOfBirth" type="date" max="2005-01-01" />
+    <br/>
+    <label for="country1">country</label>
+    <input id="country1" name="country" type="text" />
+    <br/>
+    <!--    <label for="image">image</label>-->
+    <input id="image1" name="image" type="hidden" value="xyz"/>
+    <br/>
+    <label for="SpecializedIn">SpecializedIn</label>
+    <input id="SpecializedIn" name="SpecializedIn" type="text" />
+    <br/>
+    <label for="experiences">experiences</label>
+    <input id="experiences" name="experiences" type="text" />
+
+    <label for="numOfSessions">number Of Sessions</label>
+    <input id="numOfSessions" name="numOfSessions" type="text" />
+    <br/>
 
 
-
-<!--<form action="/signup"  method="post" >-->
-
-<!--    <label for="username">User Name</label>-->
-<!--    <input id="username" name="username" type="text" />-->
-<!--    <br/>-->
-<!--    <label for="password">Password</label>-->
-<!--    <input id="password" name="password" type="password" />-->
-<!--    <br/>-->
-<!--    <label for="firstname">First Name</label>-->
-<!--    <input id="firstname" name="firstname" type="text" />-->
-<!--    <br/>-->
-<!--    <label for="lastname">Last Name</label>-->
-<!--    <input id="lastname" name="lastname" type="text" />-->
-<!--    <br/>-->
-<!--    <label for="dateOfBirth">Date Of Birth</label>-->
-<!--    <input id="dateOfBirth" name="dateOfBirth" type="date" max="2005-01-01" />-->
-<!--    <br/>-->
-<!--    <label for="country">country</label>-->
-<!--    <input id="country" name="country" type="text" />-->
-<!--    <br/>-->
-<!--&lt;!&ndash;    <label for="image">image</label>&ndash;&gt;-->
-<!--    <input id="image" name="image" type="hidden" value="xyz"/>-->
-
-<!--    <button type="submit">Sign up</button>-->
-<!--</form>-->
-
-
-
-
+    <button type="submit">Sign up</button>
+</form>
 </body>
 </html>
