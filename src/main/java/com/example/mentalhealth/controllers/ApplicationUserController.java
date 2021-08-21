@@ -17,7 +17,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import java.security.Principal;
 
 @Controller
-public class ApplicationUserController{
+public class ApplicationUserController {
 
     @Autowired
     ApplicationUserRepository applicationUserRepository;
@@ -27,15 +27,36 @@ public class ApplicationUserController{
     TherapistsRepository therapistsRepository;
 
     @PostMapping("/signupUser")
-    public RedirectView addNewUser (@ModelAttribute ApplicationUser user) {
+    public RedirectView addNewUser(@ModelAttribute ApplicationUser user) {
         Therapists existUserName = therapistsRepository.findByUsername(user.getUsername());
         if (existUserName == null) {
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+            user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
             applicationUserRepository.save(user);
         } else {    // handling error message exist username
             System.out.println("Exist username");
         }
-        return new RedirectView ("/login");
+        return new RedirectView("/login");
+    }
+
+    @GetMapping("/myProfile")
+    public String getUserConsultation(Principal p, Model m) {
+
+        ApplicationUser user = applicationUserRepository.findByUsername(p.getName());
+
+        if (user == null) {
+            Therapists therapists = therapistsRepository.findByUsername(p.getName());
+            m.addAttribute("profileUser", therapists);
+            m.addAttribute("Consultations", therapists.getConsultation());
+        } else {
+            m.addAttribute("profileUser", user);
+            m.addAttribute("Consultations", user.getConsultation());
+            m.addAttribute("deleteButton", true);
+            m.addAttribute("applicationUser", true);
+            // get all therapists for consultation adding
+            Iterable allTherapists = therapistsRepository.findAll();
+            m.addAttribute("allTherapists", allTherapists);
+        }
+        return "myProfile";
     }
 }
 

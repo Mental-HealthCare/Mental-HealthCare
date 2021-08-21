@@ -5,6 +5,57 @@
     <title th:text="${profileUser.getFirstname()}+ ' \'s Profile'"></title>
 </head>
 <body>
-<!--render consultation data && user DAta-->
+
+<!--render user DAta-->
+<h1 th:text="${profileUser.getFirstname()}+ ' \'s Profile'"></h1>
+
+<div>
+    <div th:if="${applicationUser}">
+        <!--Add Consultation form-->
+        <form action="/requestConsultation" method="post">
+            <select id="TherapistId" field="*{TherapistId}" name="TherapistId">
+                <option th:each="oneTherapist: ${allTherapists}" th:value="${oneTherapist.getId()}"
+                        th:text="${oneTherapist.getUsername()}"></option>
+            </select>
+            <label for="body">Type Your Consultation</label>
+            <textarea id="body" rows="3" field="*{body}" name="body" required></textarea>
+            <button type="submit"> add consultation</button>
+        </form>
+    </div>
+    <div th:unless="${applicationUser}">
+        <h2>Therapist Profile</h2>
+    </div>
+</div>
+
+
+<!--render consultation "pending or taken(with button add response)" both with delete -->
+<div th:each="oneConsultation: ${Consultations}">
+    <div>
+        <div th:if="${oneConsultation.isTaken()}">
+            <h2 th:text="${oneConsultation.getBody()}"></h2>
+            <form th:action="@{/showOneConsultation/{id}(id=${oneConsultation.getId()})}" method="get">
+                <button type="submit">Show Full Conversation</button>
+            </form>
+            <div th:if="${deleteButton}">
+                <form th:action="@{/DeleteOneConsultation/{id}(id=${oneConsultation.getId()})}" method="post">
+                    <button type="submit">Delete</button>
+                </form>
+            </div>
+        </div>
+        <div th:unless="${oneConsultation.isTaken()}">
+            <h2 th:text="${oneConsultation.getBody()}"></h2>
+            <form th:action="@{/showOneConsultation/{id}(id=${oneConsultation.getId()})}" method="get">
+                <button type="submit">Show Full Conversation</button>
+            </form>
+            <div th:if="${deleteButton}">
+                <form th:action="@{/DeleteOneConsultation/{id}(id=${oneConsultation.getId()})}" method="post">
+                    <button type="submit">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 </body>
 </html>

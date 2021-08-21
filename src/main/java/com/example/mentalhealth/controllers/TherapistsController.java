@@ -33,7 +33,7 @@ public class TherapistsController {
     ChatRepository chatRepository;
 
     @PostMapping("/signupTherapists")
-    public RedirectView addNewUser (@ModelAttribute Therapists user) {
+    public RedirectView addNewUser(@ModelAttribute Therapists user) {
         ApplicationUser existUserName = applicationUserRepository.findByUsername(user.getUsername());
         if (existUserName == null) {
             user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
@@ -41,7 +41,7 @@ public class TherapistsController {
         } else {     // handling error message exist username
             System.out.println("Exist username");
         }
-        return new RedirectView ("/login");
+        return new RedirectView("/login");
     }
 
     @GetMapping("/allTherapists")
@@ -52,7 +52,7 @@ public class TherapistsController {
     }
 
     @GetMapping("/therapistsProfile/{id}")
-    public String showTherapistsProfile(@PathVariable Integer id){
+    public String showTherapistsProfile(@PathVariable Integer id) {
         Therapists oneTh = therapistsRepository.findById(id).get();
         System.out.println(oneTh);
         return "therapistsProfile";

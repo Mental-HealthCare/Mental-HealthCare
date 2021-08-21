@@ -1,6 +1,8 @@
 package com.example.mentalhealth.models;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -25,7 +27,7 @@ public class Consultation {
     @ManyToOne        //relationship with therapists
     private Therapists therapists;
 
-
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @OneToMany (mappedBy = "consultation")   //relationship with response
     private List<Response> responses ;
 
