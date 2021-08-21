@@ -16,7 +16,6 @@ public class Therapists implements UserDetails{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(unique = true)
-//    @UniqueConstraint(columnNames={"username"})   // for check username if it's in the application_user table or not
     private String username;
     private String password;
     private String firstname;

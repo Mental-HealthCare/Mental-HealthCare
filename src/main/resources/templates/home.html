@@ -9,23 +9,29 @@
 <h1> Mental-HealthCare</h1>
 
 <p> Home Page</p>
-<!--<p th:text="${userData}"></p>-->
+<form action="/kkkk" method="get">
+    <button type="submit"> submit</button>
+</form>
 
-<!--<form action="/kkkk"  method="get" >-->
-<!--    <button type="submit"> submit</button>-->
-<!--</form>-->
+<div th:each="oneRes: ${response}">
+    <div>
+        <div th:if="${oneRes.isTherapists()}">
+            <h2 th:text="${therapistsName}"></h2>
+            <h2 th:text="${oneRes.getBody()}"></h2>
+        </div>
+        <div th:unless="${oneRes.isTherapists()}">
+            <h2 th:text="${usersName}"></h2>
+            <h2 th:text="${oneRes.getBody()}"></h2>
+        </div>
+    </div>
+</div>
 
-<!--<div th:each="oneRes: ${response}">-->
-<!--    <div>-->
-<!--        <div th:if="${oneRes.isTherapists()}">-->
-<!--            <h2 th:text="${therapistsName}"></h2>-->
-<!--            <h2 th:text="${oneRes.getBody()}"></h2>-->
-<!--        </div>-->
-<!--        <div th:unless="${oneRes.isTherapists()}">-->
-<!--            <h2 th:text="${usersName}"></h2>-->
-<!--            <h2 th:text="${oneRes.getBody()}"></h2>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
+<div th:each="oneMessage: ${messages}">
+    <div>
+        <h2 th:text="${oneMessage.getBody()}"></h2>
+        <h2 th:text="${oneMessage.getSender()}"></h2>
+    </div>
+</div>
+
 </body>
 </html>
