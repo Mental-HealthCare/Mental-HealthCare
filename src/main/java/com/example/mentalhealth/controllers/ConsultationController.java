@@ -6,7 +6,9 @@ import com.example.mentalhealth.repository.ApplicationUserRepository;
 import com.example.mentalhealth.repository.ConsultationRepository;
 import com.example.mentalhealth.repository.ResponseRepository;
 import com.example.mentalhealth.repository.TherapistsRepository;
+import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -42,10 +44,17 @@ public class ConsultationController {
         return "myProfile";
     }
 
+    @GetMapping("/newUserName")
+    public String getUserIfUseNameNotExist(@RequestParam("userName") String userName,Principal p, Model m){
+        ApplicationUser user = applicationUserRepository.findByUsername(userName);
+        m.addAttribute("profileUser",user);
+        m.addAttribute("Consultations",user.getConsultation());
+        return "myProfile";
+    }
+
     @GetMapping("/useNameExist")
     public String getUserIfUseNameExist(@RequestParam("id") int id,Principal p, Model m){
         if(id == 400){
-        System.out.println(id+ " ==================");
         ApplicationUser user = applicationUserRepository.findByUsername(p.getName());
         m.addAttribute("profileUser",user);
         m.addAttribute("Consultations",user.getConsultation());
@@ -67,37 +76,45 @@ public class ConsultationController {
 
     @RequestMapping(value ="/editProfile" , method = RequestMethod.GET)
     public RedirectView editProfile(@RequestParam("username") String username ,
-                                      @RequestParam("firstname") String firstname,
-                                      @RequestParam("lastname") String lastname,
-                                      @RequestParam("dateOfBirth") String dateOfBirth,
-                                      @RequestParam("image") String image,
-                                      @RequestParam("country") String country,
-                                      Principal principal, Model model){
+                                    @RequestParam("firstname") String firstname,
+                                    @RequestParam("lastname") String lastname,
+                                    @RequestParam("dateOfBirth") String dateOfBirth,
+                                    @RequestParam("image") String image,
+                                    @RequestParam("country") String country,
+                                    Principal principal, Model model, Authentication auth ){
+
+
         ApplicationUser user = applicationUserRepository.findByUsername(principal.getName());
-        Therapists therapists = therapistsRepository.findByUsername(user.getUsername());
-        System.out.println(username + "========");
-        System.out.println(principal.getName()+"++++++++++++++++");
-        if(Objects.equals(username, principal.getName())){
-            System.out.println("Hello world");
-        } else if(user != null || therapists != null){
-            System.out.println(" ++++++++++++++++++++++++++++++++++++++ ");
-            return new RedirectView("/useNameExist?id=400");
+
+        ApplicationUser checkUser =applicationUserRepository.findByUsername(username);
+        Therapists therapists = therapistsRepository.findByUsername(username);
+
+        System.out.println(user + "=========");
+        System.out.println(therapists + "=========");
+        try {
+            if (Objects.equals(username, principal.getName())) {
+                System.out.println("Hello world");
+            } else if (checkUser != null) {
+                System.out.println(" ++++++++++++++++++++++++++++++++++++++ ");
+                return new RedirectView("/useNameExist?id=400");
+            } else if (therapists != null) {
+                System.out.println(" *****************************");
+                return new RedirectView("/useNameExist?id=400");
+            }else {
+                System.out.println("lk");
+            }
+            user.setUsername(username);
+            user.setFirstname(firstname);
+            user.setLastname(lastname);
+            user.setDateOfBirth(dateOfBirth);
+            user.setImage(image);
+            user.setCountry(country);
+            final ApplicationUser newUser = applicationUserRepository.save(user);
+            return new RedirectView("/newUserName?userName=" + username);
+        }catch (NullPointerException e){
+            System.out.println("gfffg");
         }
-        user.setUsername(username);
-        user.setFirstname(firstname);
-        user.setLastname(lastname);
-        user.setDateOfBirth(dateOfBirth);
-        user.setImage(image);
-        user.setCountry(country);
-        final ApplicationUser newUser = applicationUserRepository.save(user);
-        return new RedirectView("/myProfile");
+        return new RedirectView("/newUserName");
     }
 
-
-    //    @PostMapping("/requestConsultation")
-//    public RedirectView addConsultation() {
-//
-//        return new RedirectView();
-//    }
-//
 }
