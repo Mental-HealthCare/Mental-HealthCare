@@ -1,5 +1,6 @@
 package com.example.mentalhealth.controllers;
 
+import com.example.mentalhealth.models.ApplicationUser;
 import com.example.mentalhealth.models.Consultation;
 import com.example.mentalhealth.models.Response;
 import com.example.mentalhealth.models.Therapists;
@@ -44,10 +45,41 @@ public class ConsultationController {
     }
 
     @GetMapping("/showOneConsultation/{consultationId}")
-    public String showOneConsultation(@PathVariable Integer consultationId, Model m) {
+    public String showOneConsultation(Principal p, @PathVariable Integer consultationId, Model m) {
         Consultation oneConsultation = consultationRepository.findById(consultationId).get();
         m.addAttribute("oneConsultation", oneConsultation);
+        m.addAttribute("testButton", true);
+        if (applicationUserRepository.findByUsername(p.getName()) != null) {
+            m.addAttribute("testButton", false);
+            m.addAttribute("updateConsultationButton", true);
+        }
         return "oneConsultation";
+    }
+
+    @RequestMapping(value = "/responseConsultation/{consultationId}", method = RequestMethod.GET)
+    public RedirectView responseConsultation(@PathVariable Integer consultationId) {
+        Consultation oneConsultation = consultationRepository.findById(consultationId).get();
+        oneConsultation.setTaken(true);
+        consultationRepository.save(oneConsultation);
+        return new RedirectView("/showOneConsultation/" + consultationId);
+    }
+
+    @GetMapping("/updateConsultation/{consultationId}")
+    public String updateConsultation(@PathVariable Integer consultationId, Model m) {
+        Consultation oneConsultation = consultationRepository.findById(consultationId).get();
+        m.addAttribute("oneConsultation", oneConsultation);
+        m.addAttribute("testButton", false);
+        m.addAttribute("updateConsultationButton", true);
+        m.addAttribute("showUpdateConsultationForm", true);
+        return "oneConsultation";
+    }
+
+    @RequestMapping(value = "/editConsultation/{consultationId}", method = RequestMethod.GET)
+    public RedirectView editProfile(@RequestParam("body") String body, @PathVariable Integer consultationId) {
+        Consultation oneConsultation = consultationRepository.findById(consultationId).get();
+        oneConsultation.setBody(body);
+        consultationRepository.save(oneConsultation);
+        return new RedirectView("/showOneConsultation/" + consultationId);
     }
 
     @PostMapping("/addResponse")
@@ -62,5 +94,4 @@ public class ConsultationController {
         responseRepository.save(newResponse);
         return new RedirectView("/showOneConsultation/" + consultationId);
     }
-
 }
