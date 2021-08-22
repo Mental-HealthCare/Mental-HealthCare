@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${profileUser.getFirstname()}+ ' \'s Profile'"></title>
+</head>
+<body>
+<header th:replace="fragment :: header"></header>
+<main>
+    <h2>User Name: <span th:text="${profileUser.username}"></span></h2>
+    <h2>Age: <span th:text="${profileUser.dateOfBirth}"></span></h2>
+<!--    th:method="put" content="application/json"-->
+
+    <div th:if="${userNameExist}"> <h3>This username exist</h3></div>
+
+    <form th:action="@{/editProfile}" th:object="${user}" method="get">
+        <input type="text" name="username" placeholder="username" required>
+        <input type="text" name="firstname" placeholder="firstname" required>
+        <input type="text" name="lastname" placeholder="lastname" required>
+        <input type="date" name="dateOfBirth" placeholder="dateOfBirth" required>
+        <input type="text" name="image" placeholder="image" required>
+        <input type="text" name="country" placeholder="country" required>
+        <input type="submit" name="submit" placeholder="submit" required>
+    </form>
+</main>
+<!--render consultation data && user DAta-->
+</body>
+</html>
