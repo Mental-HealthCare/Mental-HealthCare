@@ -5,9 +5,9 @@
     <title>Title</title>
 </head>
 <body>
-<div th:each="one: ${allTherapists}">
+<div th:each="oneTherapist: ${allTherapists}">
     <div>
-        <a th:href="@{/therapistsProfile/{id}(id=${one.getId()})}" th:text="${one.getUsername()}"></a>
+        <a th:href="@{/therapistsProfile/{id}(id=${oneTherapist.getId()})}" th:text="${oneTherapist.getUsername()}"></a>
     </div>
 </div>
 </body>
