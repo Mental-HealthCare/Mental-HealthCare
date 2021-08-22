@@ -12,7 +12,8 @@
     <h2 th:text="${ 'Consultation By : ' + oneConsultation.getApplicationUser().getFirstname()}"></h2>
     <h2 th:text="${oneConsultation.getBody()}"></h2>
 
-    <form th:if="${showUpdateConsultationForm}" th:action="@{/editConsultation/{id}(id=${oneConsultation.getId()})}" method="get">
+    <form th:if="${showUpdateConsultationForm}" th:action="@{/editConsultation/{id}(id=${oneConsultation.getId()})}"
+          method="get">
         <textarea rows="3" name="body" required></textarea>
         <button type="submit">Update</button>
     </form>
@@ -28,17 +29,36 @@
 <div th:each="oneResponse : ${oneConsultation.getResponses()}">
     <div th:if="${oneResponse.isTherapists()}">
         <p th:text="${oneResponse.getBody()}"></p>
-        <h1 th:if="${testButton}">Test from doctor</h1>
+        <div th:if="${testButton}">
+            <form th:action="@{/editResponse/{consultationId}/{responseId}(consultationId=${oneConsultation.getId()}, responseId=${oneResponse.getId()})}"
+                  method="get">
+                <textarea rows="3" name="body" required></textarea>
+                <button type="submit">Update</button>
+            </form>
+            <form th:action="@{/DeleteResponse/{consultationId}/{responseId}(consultationId=${oneConsultation.getId()}, responseId=${oneResponse.getId()})}"
+                  method="post">
+                <button type="submit">Delete</button>
+            </form>
+        </div>
     </div>
     <div th:unless="${oneResponse.isTherapists()}">
         <h3 th:text="${oneResponse.getBody()}"></h3>
-        <h1 th:if="${!testButton}">Test from user</h1>
+        <div th:if="${!testButton}">
+            <form th:action="@{/editResponse/{consultationId}/{responseId}(consultationId=${oneConsultation.getId()}, responseId=${oneResponse.getId()})}"
+                  method="get">
+                <textarea rows="3" name="body" required></textarea>
+                <button type="submit">Update</button>
+            </form>
+            <form th:action="@{/DeleteResponse/{consultationId}/{responseId}(consultationId=${oneConsultation.getId()}, responseId=${oneResponse.getId()})}"
+                  method="post">
+                <button type="submit">Delete</button>
+            </form>
+        </div>
     </div>
     <hr>
 </div>
 
 
-<!--Add Response-->
 <form action="/addResponse" method="post">
     <input type="hidden" field="*{consultationId}" name="consultationId" th:value="${oneConsultation.getId()}">
     <label for="responseBody">Your Response</label>

@@ -2,6 +2,7 @@ package com.example.mentalhealth.controllers;
 
 import com.example.mentalhealth.models.*;
 import com.example.mentalhealth.repository.*;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -51,9 +52,31 @@ public class TherapistsController {
         return "allTherapists.html";
     }
 
-    @GetMapping("/therapistsProfile/{id}")
-    public String showTherapistsProfile(@PathVariable Integer id) {
-        Therapists oneTherapist = therapistsRepository.findById(id).get();
+    @GetMapping("/therapistsProfile/{therapistId}")
+    public String showTherapistsProfile(@PathVariable Integer therapistId, Model m, Principal p) {
+        if (applicationUserRepository.findByUsername(p.getName()) != null) {
+            m.addAttribute("addConsultationButton", true);
+        }
+        Therapists oneTherapist = therapistsRepository.findById(therapistId).get();
+        m.addAttribute("profileUser", oneTherapist);
         return "therapistsProfile";
+    }
+
+    @GetMapping("/showAddConsultationForm/{therapistId}")
+    public String showAddConsultationForm(@PathVariable Integer therapistId, Model m) {
+        m.addAttribute("addConsultationButton", true);
+        m.addAttribute("showForm", true);
+        Therapists oneTherapist = therapistsRepository.findById(therapistId).get();
+        m.addAttribute("profileUser", oneTherapist);
+        return "therapistsProfile";
+    }
+
+    @PostMapping("/addConsultationTherapist/{therapistId}")
+    public RedirectView addConsultationTherapist(@RequestParam("body") String body, @PathVariable Integer therapistId, Principal p) {
+        Therapists oneTherapist = therapistsRepository.findById(therapistId).get();
+        ApplicationUser user = applicationUserRepository.findByUsername(p.getName());
+        Consultation newConsultation = new Consultation(body, false, user, oneTherapist);
+        consultationRepository.save(newConsultation);
+        return new RedirectView("/therapistsProfile/" + therapistId);
     }
 }
