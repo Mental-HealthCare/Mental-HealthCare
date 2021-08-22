@@ -8,34 +8,34 @@
 <header th:replace="fragment :: header"></header>
 <main>
 
-<!--render user DAta-->
-<h2>User Name: <span th:text="${profileUser.username}"></span></h2>
+    <!--render user DAta-->
+    <h2>User Name: <span th:text="${profileUser.username}"></span></h2>
 
-<div>
-    <div th:if="${applicationUser}">
-        <!--Add Consultation form-->
-        <form action="/requestConsultation" method="post">
-            <select id="TherapistId" field="*{TherapistId}" name="TherapistId">
-                <option th:each="oneTherapist: ${allTherapists}" th:value="${oneTherapist.getId()}"
-                        th:text="${oneTherapist.getUsername()}"></option>
-            </select>
-            <label for="body">Type Your Consultation</label>
-            <textarea id="body" rows="3" field="*{body}" name="body" required></textarea>
-            <button type="submit"> add consultation</button>
-        </form>
-    </div>
-    <div th:unless="${applicationUser}">
-        <h2>Therapist Profile</h2>
-    </div>
-</div>
-
-<!--render consultation "pending or taken(with button add response)" both with delete -->
-<div th:each="oneConsultation: ${Consultations}">
     <div>
+        <div th:if="${applicationUser}">
+            <!--Add Consultation form-->
+            <form action="/requestConsultation" method="post">
+                <select id="TherapistId" field="*{TherapistId}" name="TherapistId">
+                    <option th:each="oneTherapist: ${allTherapists}" th:value="${oneTherapist.getId()}"
+                            th:text="${oneTherapist.getUsername()}"></option>
+                </select>
+                <label for="body">Type Your Consultation</label>
+                <textarea id="body" rows="3" field="*{body}" name="body" required></textarea>
+                <button type="submit"> add consultation</button>
+            </form>
+        </div>
+        <div th:unless="${applicationUser}">
+            <h2>Therapist Profile</h2>
+        </div>
+    </div>
+
+    <!--render consultation "pending or taken(with button add response)" both with delete -->
+    <div th:each="oneConsultation: ${Consultations}">
         <div th:if="${oneConsultation.isTaken()}">
             <h2 th:text="${oneConsultation.getBody()}"></h2>
             <a th:href="@{/showOneConsultation/{id}(id=${oneConsultation.getId()})}">Show Full Conversation</a>
-            <form th:if="${applicationUser}" th:action="@{/DeleteOneConsultation/{id}(id=${oneConsultation.getId()})}"
+            <form th:if="${applicationUser}"
+                  th:action="@{/DeleteOneConsultation/{id}(id=${oneConsultation.getId()})}"
                   method="post">
                 <button type="submit">Delete</button>
             </form>
@@ -43,29 +43,38 @@
         <div th:unless="${oneConsultation.isTaken()}">
             <h2 th:text="${oneConsultation.getBody()}"></h2>
             <a th:href="@{/showOneConsultation/{id}(id=${oneConsultation.getId()})}">Show Full Conversation</a>
-            <form th:if="${applicationUser}" th:action="@{/DeleteOneConsultation/{id}(id=${oneConsultation.getId()})}"
+            <form th:if="${applicationUser}"
+                  th:action="@{/DeleteOneConsultation/{id}(id=${oneConsultation.getId()})}"
                   method="post">
                 <button type="submit">Delete</button>
             </form>
         </div>
     </div>
-</div>
-</div>
 
 
-<!--    th:method="put" content="application/json"-->
+    <!--    th:method="put" content="application/json"-->
 
-    <div th:if="${userNameExist}"> <h3>This username exist</h3></div>
-
-    <form th:action="@{/editProfile}" th:object="${user}" method="get">
-        <input type="text" name="username" placeholder="username" required>
-        <input type="text" name="firstname" placeholder="firstname" required>
-        <input type="text" name="lastname" placeholder="lastname" required>
-        <input type="date" name="dateOfBirth" placeholder="dateOfBirth" required>
-        <input type="text" name="image" placeholder="image" required>
-        <input type="text" name="country" placeholder="country" required>
-        <input type="submit" name="submit" placeholder="submit" required>
-    </form>
+    <div>
+        <form th:if="${applicationUser}" th:action="@{/editProfile}" method="get">
+            <input type="text" name="firstname" placeholder="firstname" required>
+            <input type="text" name="lastname" placeholder="lastname" required>
+            <input type="date" name="dateOfBirth" placeholder="dateOfBirth" required>
+            <input type="text" name="image" placeholder="image" required>
+            <input type="text" name="country" placeholder="country" required>
+            <input type="submit" name="submit" placeholder="submit" required>
+        </form>
+        <form  th:unless="${applicationUser}" th:action="@{/editProfile}" method="get">
+            <input type="text" name="firstname" placeholder="firstname" required>
+            <input type="text" name="lastname" placeholder="lastname" required>
+            <input type="date" name="dateOfBirth" placeholder="dateOfBirth" required>
+            <input type="text" name="image" placeholder="image" required>
+            <input type="text" name="country" placeholder="country" required>
+            <input type="text" name="specializedIn" placeholder="Specialized In" required>
+            <input type="text" name="experiences" placeholder="Experiences" required>
+            <input type="number" min="1" name="numOfSessions" placeholder="Number Of Sessions" required>
+            <input type="submit" name="submit" placeholder="submit" required>
+        </form>
+    </div>
 </main>
 </body>
 </html>

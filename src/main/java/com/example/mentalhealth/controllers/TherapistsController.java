@@ -53,8 +53,7 @@ public class TherapistsController {
 
     @GetMapping("/therapistsProfile/{id}")
     public String showTherapistsProfile(@PathVariable Integer id) {
-        Therapists oneTh = therapistsRepository.findById(id).get();
-        System.out.println(oneTh);
+        Therapists oneTherapist = therapistsRepository.findById(id).get();
         return "therapistsProfile";
     }
 }
