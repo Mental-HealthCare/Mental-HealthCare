@@ -14,7 +14,7 @@ public class Messages {
     private String body;
     @CreationTimestamp
     private Date time;
-    private String sender;
+    private ApplicationUser sender;
 
     @ManyToOne
     private Chat chat;  //relationship with Chat
@@ -22,10 +22,19 @@ public class Messages {
     public Messages() {
     }
 
-    public Messages(String body, String sender,Chat chat) {
+
+    public Messages(String body, ApplicationUser sender, Chat chat) {
         this.body = body;
         this.sender = sender;
         this.chat = chat;
+    }
+
+    public ApplicationUser getSender() {
+        return sender;
+    }
+
+    public void setSender(ApplicationUser sender) {
+        this.sender = sender;
     }
 
     public Integer getId() {
@@ -48,13 +57,7 @@ public class Messages {
         this.time = time;
     }
 
-    public String getSender() {
-        return sender;
-    }
 
-    public void setSender(String sender) {
-        this.sender = sender;
-    }
 
     public Chat getChat() {
         return chat;
