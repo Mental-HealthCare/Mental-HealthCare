@@ -8,6 +8,7 @@ import com.example.mentalhealth.repository.ConsultationRepository;
 import com.example.mentalhealth.repository.ResponseRepository;
 import com.example.mentalhealth.repository.TherapistsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +27,8 @@ public class ConsultationController {
     ApplicationUserRepository applicationUserRepository;
     @Autowired
     ResponseRepository responseRepository;
+    @Autowired
+    BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @PostMapping("/requestConsultation")
     public RedirectView addConsultation(Principal p, Model m, @RequestParam Integer TherapistId, @RequestParam String body) {
@@ -59,4 +62,5 @@ public class ConsultationController {
         responseRepository.save(newResponse);
         return new RedirectView("/showOneConsultation/" + consultationId);
     }
+
 }

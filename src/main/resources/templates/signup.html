@@ -14,7 +14,8 @@
     <input id="username" name="username" type="text" pattern="^[A-Za-z0-9_]{1,15}$" title="Mustn't contain any space or char except ( _ )"/>
     <br/>
     <label for="password">Password</label>
-    <input id="password" name="password" type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required/>
+<!--    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"-->
+    <input id="password" name="password" type="password" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required/>
     <br/>
     <label for="firstname">First Name</label>
     <input id="firstname" name="firstname" type="text" />
@@ -34,9 +35,7 @@
     <button type="submit">Sign up</button>
 </form>
 <br/>
-
 <form action="/signupTherapists"  method="post" >
-
     <label for="username1">User Name</label>
     <input id="username1" name="username" type="text" />
     <br/>
@@ -67,8 +66,6 @@
     <label for="numOfSessions">number Of Sessions</label>
     <input id="numOfSessions" name="numOfSessions" type="text" />
     <br/>
-
-
     <button type="submit">Sign up</button>
 </form>
 </body>

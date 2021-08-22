@@ -5,16 +5,15 @@ import com.example.mentalhealth.models.Therapists;
 import com.example.mentalhealth.repository.ApplicationUserRepository;
 import com.example.mentalhealth.repository.TherapistsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.security.Principal;
+import java.util.Objects;
 
 @Controller
 public class ApplicationUserController {
@@ -51,11 +50,83 @@ public class ApplicationUserController {
             m.addAttribute("profileUser", user);
             m.addAttribute("Consultations", user.getConsultation());
             m.addAttribute("applicationUser", true);
+
             // get all therapists for consultation adding
             Iterable allTherapists = therapistsRepository.findAll();
             m.addAttribute("allTherapists", allTherapists);
         }
         return "myProfile";
     }
+
+    @RequestMapping(value = "/editProfile", method = RequestMethod.GET)
+    public RedirectView editProfile(@RequestParam("username") String username,
+                                    @RequestParam("firstname") String firstname,
+                                    @RequestParam("lastname") String lastname,
+                                    @RequestParam("dateOfBirth") String dateOfBirth,
+                                    @RequestParam("image") String image,
+                                    @RequestParam("country") String country,
+                                    Principal principal, Model model) {
+
+        ApplicationUser user = applicationUserRepository.findByUsername(principal.getName());
+        Therapists therapists = therapistsRepository.findByUsername(user.getUsername());
+
+        if (Objects.equals(username, principal.getName())) {
+            System.out.println("Hello world");
+        } else if (applicationUserRepository.findByUsername(username) != null || therapistsRepository.findByUsername(username) != null) {
+            return new RedirectView("/useNameExist");
+        }
+
+        user.setUsername(username);
+        user.setFirstname(firstname);
+        user.setLastname(lastname);
+        user.setDateOfBirth(dateOfBirth);
+        user.setImage(image);
+        user.setCountry(country);
+        applicationUserRepository.save(user);
+        return new RedirectView("/myProfileAfterEdit/" + user.getUsername());
+    }
+
+    @GetMapping("/myProfileAfterEdit/{username}")
+    public String getUserAfterEdit(@PathVariable String username, Model m) {
+
+        ApplicationUser user = applicationUserRepository.findByUsername(username);
+
+        if (user == null) {
+            Therapists therapists = therapistsRepository.findByUsername(username);
+            m.addAttribute("profileUser", therapists);
+            m.addAttribute("Consultations", therapists.getConsultation());
+        } else {
+            m.addAttribute("profileUser", user);
+            m.addAttribute("Consultations", user.getConsultation());
+            m.addAttribute("applicationUser", true);
+
+            // get all therapists for consultation adding
+            Iterable allTherapists = therapistsRepository.findAll();
+            m.addAttribute("allTherapists", allTherapists);
+        }
+        return "myProfile";
+    }
+
+    @GetMapping("/useNameExist")
+    public String getUserIfUseNameExist(Principal p, Model m) {
+        ApplicationUser user = applicationUserRepository.findByUsername(p.getName());
+        m.addAttribute("userNameExist", true);
+        if (user == null) {
+            Therapists therapists = therapistsRepository.findByUsername(p.getName());
+            m.addAttribute("profileUser", therapists);
+            m.addAttribute("Consultations", therapists.getConsultation());
+        } else {
+            m.addAttribute("profileUser", user);
+            m.addAttribute("Consultations", user.getConsultation());
+            m.addAttribute("applicationUser", true);
+
+            // get all therapists for consultation adding
+            Iterable allTherapists = therapistsRepository.findAll();
+            m.addAttribute("allTherapists", allTherapists);
+        }
+        return "myProfile";
+    }
+
+
 }
 
