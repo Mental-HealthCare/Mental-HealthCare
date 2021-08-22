@@ -33,27 +33,22 @@
     <div>
         <div th:if="${oneConsultation.isTaken()}">
             <h2 th:text="${oneConsultation.getBody()}"></h2>
-            <form th:action="@{/showOneConsultation/{id}(id=${oneConsultation.getId()})}" method="get">
-                <button type="submit">Show Full Conversation</button>
+            <a th:href="@{/showOneConsultation/{id}(id=${oneConsultation.getId()})}">Show Full Conversation</a>
+            <form th:if="${applicationUser}" th:action="@{/DeleteOneConsultation/{id}(id=${oneConsultation.getId()})}"
+                  method="post">
+                <button type="submit">Delete</button>
             </form>
-            <div th:if="${applicationUser}">
-                <form th:action="@{/DeleteOneConsultation/{id}(id=${oneConsultation.getId()})}" method="post">
-                    <button type="submit">Delete</button>
-                </form>
-            </div>
         </div>
         <div th:unless="${oneConsultation.isTaken()}">
             <h2 th:text="${oneConsultation.getBody()}"></h2>
-            <form th:action="@{/showOneConsultation/{id}(id=${oneConsultation.getId()})}" method="get">
-                <button type="submit">Show Full Conversation</button>
+            <a th:href="@{/showOneConsultation/{id}(id=${oneConsultation.getId()})}">Show Full Conversation</a>
+            <form th:if="${applicationUser}" th:action="@{/DeleteOneConsultation/{id}(id=${oneConsultation.getId()})}"
+                  method="post">
+                <button type="submit">Delete</button>
             </form>
-            <div th:if="${applicationUser}">
-                <form th:action="@{/DeleteOneConsultation/{id}(id=${oneConsultation.getId()})}" method="post">
-                    <button type="submit">Delete</button>
-                </form>
-            </div>
         </div>
     </div>
+</div>
 </div>
 
 
