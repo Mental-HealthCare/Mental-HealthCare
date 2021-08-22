@@ -50,7 +50,6 @@ public class ApplicationUserController {
         } else {
             m.addAttribute("profileUser", user);
             m.addAttribute("Consultations", user.getConsultation());
-            m.addAttribute("deleteButton", true);
             m.addAttribute("applicationUser", true);
             // get all therapists for consultation adding
             Iterable allTherapists = therapistsRepository.findAll();

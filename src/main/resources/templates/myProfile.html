@@ -36,7 +36,7 @@
             <form th:action="@{/showOneConsultation/{id}(id=${oneConsultation.getId()})}" method="get">
                 <button type="submit">Show Full Conversation</button>
             </form>
-            <div th:if="${deleteButton}">
+            <div th:if="${applicationUser}">
                 <form th:action="@{/DeleteOneConsultation/{id}(id=${oneConsultation.getId()})}" method="post">
                     <button type="submit">Delete</button>
                 </form>
@@ -47,7 +47,7 @@
             <form th:action="@{/showOneConsultation/{id}(id=${oneConsultation.getId()})}" method="get">
                 <button type="submit">Show Full Conversation</button>
             </form>
-            <div th:if="${deleteButton}">
+            <div th:if="${applicationUser}">
                 <form th:action="@{/DeleteOneConsultation/{id}(id=${oneConsultation.getId()})}" method="post">
                     <button type="submit">Delete</button>
                 </form>

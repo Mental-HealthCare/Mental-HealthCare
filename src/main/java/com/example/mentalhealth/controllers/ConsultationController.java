@@ -34,17 +34,17 @@ public class ConsultationController {
         return new RedirectView("/myProfile");
     }
 
+    @RequestMapping("/DeleteOneConsultation/{consultationId}")
+    public RedirectView deleteEmployee(@PathVariable Integer consultationId) {
+        consultationRepository.deleteById(consultationId);
+        return new RedirectView("/myProfile");
+    }
+
     @GetMapping("/showOneConsultation/{consultationId}")
     public String showOneConsultation(@PathVariable Integer consultationId, Model m) {
         Consultation oneConsultation = consultationRepository.findById(consultationId).get();
         m.addAttribute("oneConsultation", oneConsultation);
         return "oneConsultation";
-    }
-
-    @RequestMapping("/DeleteOneConsultation/{consultationId}")
-    public RedirectView deleteEmployee(@PathVariable Integer consultationId) {
-        consultationRepository.deleteById(consultationId);
-        return new RedirectView("/myProfile");
     }
 
     @PostMapping("/addResponse")
