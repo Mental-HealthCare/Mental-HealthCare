@@ -17,6 +17,7 @@ public class Consultation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    private String subject;
     private String body;
     @CreationTimestamp
     private Date time;
@@ -35,7 +36,8 @@ public class Consultation {
     public Consultation() {}
 
     //constructor
-    public Consultation(String body, boolean taken, ApplicationUser applicationUser, Therapists therapists) {
+    public Consultation( String subject, String body, boolean taken, ApplicationUser applicationUser, Therapists therapists) {
+        this.subject = subject;
         this.body = body;
         this.taken = taken;
         this.applicationUser = applicationUser;
@@ -50,6 +52,14 @@ public class Consultation {
 
     public String getBody() {
         return body;
+    }
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
     }
 
     public void setBody(String body) {

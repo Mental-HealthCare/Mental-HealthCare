@@ -31,8 +31,8 @@ public class ConsultationController {
     BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @PostMapping("/requestConsultation")
-    public RedirectView addConsultation(Principal p, Model m, @RequestParam Integer TherapistId, @RequestParam String body) {
-        Consultation newConsultation = new Consultation(body, false, applicationUserRepository.findByUsername(p.getName()), therapistsRepository.findById(TherapistId).get());
+    public RedirectView addConsultation(Principal p, Model m, @RequestParam Integer TherapistId,@RequestParam String subject, @RequestParam String body) {
+        Consultation newConsultation = new Consultation(subject, body, false, applicationUserRepository.findByUsername(p.getName()), therapistsRepository.findById(TherapistId).get());
         consultationRepository.save(newConsultation);
         return new RedirectView("/myProfile");
     }

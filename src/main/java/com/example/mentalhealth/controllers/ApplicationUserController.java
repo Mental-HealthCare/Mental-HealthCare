@@ -44,13 +44,14 @@ public class ApplicationUserController {
             Therapists therapists = therapistsRepository.findByUsername(p.getName());
             m.addAttribute("profileUser", therapists);
             m.addAttribute("Consultations", therapists.getConsultation());
+            m.addAttribute("applicationUser", false);
         } else {
             m.addAttribute("profileUser", user);
             m.addAttribute("Consultations", user.getConsultation());
             m.addAttribute("applicationUser", true);
 
             // get all therapists for consultation adding
-            Iterable allTherapists = therapistsRepository.findAll();
+            Iterable allTherapists = therapistsRepository.findAllByIsEnabled(true);
             m.addAttribute("allTherapists", allTherapists);
         }
         return "myProfile";
