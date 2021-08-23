@@ -28,11 +28,29 @@
 <div th:each="oneResponse : ${oneConsultation.getResponses()}">
     <div th:if="${oneResponse.isTherapists()}">
         <p th:text="${oneResponse.getBody()}"></p>
-        <h1 th:if="${testButton}">Test from doctor</h1>
+
+        <form th:if="${testButton}" th:action="@{/deleteResponse/{id}(id=${oneResponse.getId()})}"
+              method="get" value="${oneConsultation.getId()}">
+            <button type="submit" th:value="${oneConsultation.getId()}" name="userId">Delete</button>
+        </form>
+
+    <div th:if="${testButton}">
+        <button type="submit">Update</button>
+    </div>
+
     </div>
     <div th:unless="${oneResponse.isTherapists()}">
         <h3 th:text="${oneResponse.getBody()}"></h3>
-        <h1 th:if="${!testButton}">Test from user</h1>
+        <form th:if="${!testButton}" th:action="@{/deleteResponse/{id}(id=${oneResponse.getId()})}"
+              method="get" value="${oneConsultation.getId()}">
+            <button type="submit" th:value="${oneConsultation.getId()}" name="userId">Delete</button>
+        </form>
+
+        <form th:if="${!testButton}" th:action="@{/updateResponse/{id}(id=${oneResponse.getId()})}"
+              method="get" value="${oneConsultation.getId()}">
+            <button type="submit">Update</button>
+        </form>
+
     </div>
     <hr>
 </div>

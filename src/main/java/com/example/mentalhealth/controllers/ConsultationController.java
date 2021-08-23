@@ -45,10 +45,13 @@ public class ConsultationController {
 
     @GetMapping("/showOneConsultation/{consultationId}")
     public String showOneConsultation(Principal p, @PathVariable Integer consultationId, Model m) {
+        System.out.println(consultationId +"  ++++++++++++++++++++");
         Consultation oneConsultation = consultationRepository.findById(consultationId).get();
         m.addAttribute("oneConsultation", oneConsultation);
         m.addAttribute("testButton", true);
+        System.out.println(consultationId +"  ++++++++++++++++++++");
         if (applicationUserRepository.findByUsername(p.getName()) != null) {
+            System.out.println("++++++++++++++++++++++++=");
             m.addAttribute("testButton", false);
             m.addAttribute("updateConsultationButton", true);
         }
@@ -93,4 +96,19 @@ public class ConsultationController {
         responseRepository.save(newResponse);
         return new RedirectView("/showOneConsultation/" + consultationId);
     }
+
+
+    @GetMapping("/deleteResponse/{id}")
+    public RedirectView deleteResponseFunction(@PathVariable Integer id , @RequestParam("userId") String usrId){
+        responseRepository.deleteById(id);
+        System.out.println(usrId + "   tttttttttttttttttttttt");
+        return new RedirectView("/showOneConsultation/"+usrId);
+    }
+
+    @GetMapping("updateResponse")
+    public void updateResponse(){
+
+    }
+
+
 }
