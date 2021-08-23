@@ -5,6 +5,86 @@
     <title th:text="${profileUser.getFirstname()}+ ' \'s Profile'"></title>
 </head>
 <body>
-<!--render consultation data && user DAta-->
+<header th:replace="fragment :: header"></header>
+<main>
+
+    <!--render user DAta-->
+    <h2>User Name: <span th:text="${profileUser.username}"></span></h2>
+
+    <div>
+        <div th:if="${applicationUser}">
+            <!--Add Consultation form-->
+            <form action="/requestConsultation" method="post">
+                <select id="TherapistId" field="*{TherapistId}" name="TherapistId">
+                    <option th:each="oneTherapist: ${allTherapists}" th:value="${oneTherapist.getId()}"
+                            th:text="${oneTherapist.getUsername()}"></option>
+                </select>
+                <label for="body">Type Your Consultation</label>
+                <textarea id="body" rows="3" field="*{body}" name="body" required></textarea>
+                <button type="submit"> add consultation</button>
+            </form>
+        </div>
+        <div th:unless="${applicationUser}">
+            <h2>Therapist Profile</h2>
+        </div>
+    </div>
+
+    <!--render consultation "pending or taken(with button add response)" both with delete -->
+    <div th:each="oneConsultation: ${Consultations}">
+
+        <div th:if="${oneConsultation.isTaken()}">
+            <h2 th:text="${oneConsultation.getBody()}"></h2>
+            <a th:href="@{/showOneConsultation/{id}(id=${oneConsultation.getId()})}">Show Full Conversation</a>
+            <form th:if="${applicationUser}"
+                  th:action="@{/DeleteOneConsultation/{id}(id=${oneConsultation.getId()})}"
+                  method="post">
+                <button type="submit">Delete</button>
+            </form>
+        </div>
+
+        <div th:unless="${oneConsultation.isTaken()}">
+            <h2 th:text="${oneConsultation.getBody()}"></h2>
+            <form th:if="${applicationUser}"
+                  th:action="@{/DeleteOneConsultation/{id}(id=${oneConsultation.getId()})}"
+                  method="post">
+                <button type="submit">Delete</button>
+            </form>
+            <form th:unless="${applicationUser}"
+                  th:action="@{/responseConsultation/{id}(id=${oneConsultation.getId()})}"
+                  method="get">
+                <button type="submit">Response Consultation</button>
+            </form>
+        </div>
+    </div>
+
+
+    <!--    th:method="put" content="application/json"-->
+
+    <div>
+        <form th:if="${applicationUser}" th:action="@{/editProfile}" method="get">
+            <input type="text" name="firstname" placeholder="firstname" required>
+            <input type="text" name="lastname" placeholder="lastname" required>
+            <input type="date" name="dateOfBirth" placeholder="dateOfBirth" required>
+            <input type="text" name="image" placeholder="image" required>
+            <input type="text" name="country" placeholder="country" required>
+            <input type="hidden" name="specializedIn">
+            <input type="hidden" name="experiences">
+            <input type="hidden" name="numOfSessions" th:value="1">
+            <button type="submit">Submit</button>
+        </form>
+        <form th:unless="${applicationUser}" th:action="@{/editProfile}" method="get">
+            <input type="text" name="firstname" th:value="${profileUser.getFirstname()}" placeholder="firstname"
+                   required>
+            <input type="text" name="lastname" th:value="${profileUser.getLastname()}" placeholder="lastname" required>
+            <input type="date" name="dateOfBirth" placeholder="dateOfBirth" required>
+            <input type="text" name="image" placeholder="image" required>
+            <input type="text" name="country" placeholder="country" required>
+            <input type="text" name="specializedIn" placeholder="Specialized In" required>
+            <input type="text" name="experiences" placeholder="Experiences" required>
+            <input type="number" min="1" th:value="1" name="numOfSessions" placeholder="Number Of Sessions" required>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</main>
 </body>
 </html>
