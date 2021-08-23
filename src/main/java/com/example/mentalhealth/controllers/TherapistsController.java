@@ -48,7 +48,7 @@ public class TherapistsController {
 
     @GetMapping("/allTherapists")
     public String getAllTherapists(Model model) {
-        Iterable allTherapists = therapistsRepository.findAll();
+        Iterable allTherapists = therapistsRepository.findAllByIsEnabled(true);
         model.addAttribute("allTherapists", allTherapists);
         return "allTherapists.html";
     }
