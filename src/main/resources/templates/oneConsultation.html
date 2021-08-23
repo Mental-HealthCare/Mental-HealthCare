@@ -5,33 +5,60 @@
     <title>Title</title>
 </head>
 <body>
+<header th:replace="fragment :: header"></header>
+
+
 <div>
-    <h2 th:text="${oneConsultation.getApplicationUser().getFirstname()}"></h2>
+    <h2 th:text="${ 'Consultation By : ' + oneConsultation.getApplicationUser().getFirstname()}"></h2>
     <h2 th:text="${oneConsultation.getBody()}"></h2>
+
+    <form th:if="${showUpdateConsultationForm}" th:action="@{/editConsultation/{id}(id=${oneConsultation.getId()})}"
+          method="get">
+        <textarea rows="3" name="body" required></textarea>
+        <button type="submit">Update</button>
+    </form>
+
+    <form th:if="${updateConsultationButton}"
+          th:action="@{/updateConsultation/{id}(id=${oneConsultation.getId()})}" method="get">
+        <button type="submit">Edit Your Consultation</button>
+    </form>
+
 </div>
 
-<!--getResponses()-->
-    <div>
-        <div th:if="${oneConsultation.isTaken()}">
-<!--            <form th:if="${applicationUser}"-->
-<!--                  th:action="@{/DeleteOneConsultation/{id}(id=${oneConsultation.getId()})}"-->
-<!--                  method="post">-->
-<!--                <button type="submit">Delete</button>-->
-<!--            </form>-->
-        </div>
-        <div th:unless="${oneConsultation.isTaken()}">
-            <h2 th:text="${oneConsultation.getBody()}"></h2>
-            <a th:href="@{/showOneConsultation/{id}(id=${oneConsultation.getId()})}">Show Full Conversation</a>
-            <form th:if="${applicationUser}"
-                  th:action="@{/DeleteOneConsultation/{id}(id=${oneConsultation.getId()})}"
+<!--get Responses()-->
+<div th:each="oneResponse : ${oneConsultation.getResponses()}">
+    <div th:if="${oneResponse.isTherapists()}">
+        <p th:text="${oneResponse.getBody()}"></p>
+        <div th:if="${testButton}">
+            <form th:action="@{/editResponse/{consultationId}/{responseId}(consultationId=${oneConsultation.getId()}, responseId=${oneResponse.getId()})}"
+                  method="get">
+                <textarea rows="3" name="body" required></textarea>
+                <button type="submit">Update</button>
+            </form>
+            <form th:action="@{/DeleteResponse/{consultationId}/{responseId}(consultationId=${oneConsultation.getId()}, responseId=${oneResponse.getId()})}"
                   method="post">
                 <button type="submit">Delete</button>
             </form>
         </div>
     </div>
+    <div th:unless="${oneResponse.isTherapists()}">
+        <h3 th:text="${oneResponse.getBody()}"></h3>
+        <div th:if="${!testButton}">
+            <form th:action="@{/editResponse/{consultationId}/{responseId}(consultationId=${oneConsultation.getId()}, responseId=${oneResponse.getId()})}"
+                  method="get">
+                <textarea rows="3" name="body" required></textarea>
+                <button type="submit">Update</button>
+            </form>
+            <form th:action="@{/DeleteResponse/{consultationId}/{responseId}(consultationId=${oneConsultation.getId()}, responseId=${oneResponse.getId()})}"
+                  method="post">
+                <button type="submit">Delete</button>
+            </form>
+        </div>
+    </div>
+    <hr>
+</div>
 
 
-<!--Add Response-->
 <form action="/addResponse" method="post">
     <input type="hidden" field="*{consultationId}" name="consultationId" th:value="${oneConsultation.getId()}">
     <label for="responseBody">Your Response</label>

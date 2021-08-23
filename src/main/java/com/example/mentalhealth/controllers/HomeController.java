@@ -41,7 +41,6 @@ public class HomeController {
     @GetMapping("/")
     public String getHome(Principal p, Model model) {
         List list = (List) applicationUserRepository.findAll();
-        System.out.println(list.size());
         if (list.size() == 0) {
             Chat chat = new Chat("Support_Group");
             chatRepository.save(chat);

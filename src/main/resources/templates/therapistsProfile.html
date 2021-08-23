@@ -5,6 +5,19 @@
     <title>Title</title>
 </head>
 <body>
+<header th:replace="fragment :: header"></header>
+<main>
 
+    <form th:if="${addConsultationButton}"
+          th:action="@{/showAddConsultationForm/{id}(id=${profileUser.getId()})}" method="get">
+        <button type="submit">Send a Consultation</button>
+    </form>
+
+    <form th:if="${showForm}" th:action="@{/addConsultationTherapist/{id}(id=${profileUser.getId()})}" method="post">
+        <textarea rows="3" name="body" required></textarea>
+        <button type="submit">SEND</button>
+    </form>
+
+</main>
 </body>
 </html>

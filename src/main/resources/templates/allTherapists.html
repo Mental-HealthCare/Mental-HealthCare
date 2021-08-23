@@ -5,6 +5,7 @@
     <title>Title</title>
 </head>
 <body>
+<header th:replace="fragment :: header"></header>
 <div th:each="oneTherapist: ${allTherapists}">
     <div>
         <a th:href="@{/therapistsProfile/{id}(id=${oneTherapist.getId()})}" th:text="${oneTherapist.getUsername()}"></a>
