@@ -67,18 +67,22 @@
             <input type="date" name="dateOfBirth" placeholder="dateOfBirth" required>
             <input type="text" name="image" placeholder="image" required>
             <input type="text" name="country" placeholder="country" required>
-            <input type="submit" name="submit" placeholder="submit" required>
+            <input type="hidden" name="specializedIn">
+            <input type="hidden" name="experiences">
+            <input type="hidden" name="numOfSessions" th:value="1">
+            <button type="submit">Submit</button>
         </form>
         <form th:unless="${applicationUser}" th:action="@{/editProfile}" method="get">
-            <input type="text" name="firstname" placeholder="firstname" required>
-            <input type="text" name="lastname" placeholder="lastname" required>
+            <input type="text" name="firstname" th:value="${profileUser.getFirstname()}" placeholder="firstname"
+                   required>
+            <input type="text" name="lastname" th:value="${profileUser.getLastname()}" placeholder="lastname" required>
             <input type="date" name="dateOfBirth" placeholder="dateOfBirth" required>
             <input type="text" name="image" placeholder="image" required>
             <input type="text" name="country" placeholder="country" required>
             <input type="text" name="specializedIn" placeholder="Specialized In" required>
             <input type="text" name="experiences" placeholder="Experiences" required>
-            <input type="number" min="1" name="numOfSessions" placeholder="Number Of Sessions" required>
-            <input type="submit" name="submit" placeholder="submit" required>
+            <input type="number" min="1" th:value="1" name="numOfSessions" placeholder="Number Of Sessions" required>
+            <button type="submit">Submit</button>
         </form>
     </div>
 </main>

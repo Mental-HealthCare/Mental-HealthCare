@@ -38,7 +38,7 @@ public class ConsultationController {
     }
 
     @RequestMapping("/DeleteOneConsultation/{consultationId}")
-    public RedirectView deleteEmployee(@PathVariable Integer consultationId) {
+    public RedirectView deleteConsultation(@PathVariable Integer consultationId) {
         consultationRepository.deleteById(consultationId);
         return new RedirectView("/myProfile");
     }
@@ -77,7 +77,7 @@ public class ConsultationController {
     }
 
     @RequestMapping(value = "/editConsultation/{consultationId}", method = RequestMethod.GET)
-    public RedirectView editProfile(@RequestParam("body") String body, @PathVariable Integer consultationId) {
+    public RedirectView editConsultation(@RequestParam("body") String body, @PathVariable Integer consultationId) {
         Consultation oneConsultation = consultationRepository.findById(consultationId).get();
         oneConsultation.setBody(body);
         consultationRepository.save(oneConsultation);
@@ -98,17 +98,18 @@ public class ConsultationController {
     }
 
 
-    @GetMapping("/deleteResponse/{id}")
-    public RedirectView deleteResponseFunction(@PathVariable Integer id , @RequestParam("userId") String usrId){
-        responseRepository.deleteById(id);
-        System.out.println(usrId + "   tttttttttttttttttttttt");
-        return new RedirectView("/showOneConsultation/"+usrId);
+    @RequestMapping("/DeleteResponse/{consultationId}/{responseId}")
+    public RedirectView deleteResponse(@PathVariable Integer consultationId, @PathVariable Integer responseId) {
+        responseRepository.deleteById(responseId);
+        return new RedirectView("/showOneConsultation/" + consultationId);
     }
 
-    @GetMapping("updateResponse")
-    public void updateResponse(){
-
+    @RequestMapping(value = "/editResponse/{consultationId}/{responseId}", method = RequestMethod.GET)
+    public RedirectView editResponse(@PathVariable Integer consultationId, @PathVariable Integer responseId, @RequestParam("body") String body) {
+        Response response = responseRepository.findById(responseId).get();
+        response.setBody(body);
+        responseRepository.save(response);
+        return new RedirectView("/showOneConsultation/" + consultationId);
     }
-
-
 }
+
