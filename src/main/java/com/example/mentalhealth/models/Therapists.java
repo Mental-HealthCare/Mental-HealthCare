@@ -25,6 +25,8 @@ public class Therapists implements UserDetails{
     private String SpecializedIn ;
     private String experiences;
     private Integer numOfSessions;
+    private boolean isEnabled;
+
 
     @OneToMany (mappedBy = "therapists")
     private List<Consultation> Consultation ;
@@ -49,6 +51,10 @@ public class Therapists implements UserDetails{
         SpecializedIn = specializedIn;
         this.experiences = experiences;
         this.numOfSessions = numOfSessions;
+        this.isEnabled = false;
+        System.out.println("22222222222222222222222");
+        System.out.println(this.isEnabled);
+        System.out.println("22222222222222222222222");
     }
 
 
@@ -93,7 +99,7 @@ public class Therapists implements UserDetails{
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return this.isEnabled;
     }
 
 
@@ -162,4 +168,7 @@ public class Therapists implements UserDetails{
         this.numOfSessions = numOfSessions;
     }
 
+    public void setEnabled(boolean enabled) {
+        isEnabled = enabled;
+    }
 }

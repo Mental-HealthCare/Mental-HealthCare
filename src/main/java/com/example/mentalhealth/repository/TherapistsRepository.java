@@ -6,5 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface TherapistsRepository extends CrudRepository<Therapists ,Integer> {
     public Therapists findByUsername(String username);
+    public Iterable<Therapists> findAllByIsEnabled(boolean isEnabled);
+
 
 }

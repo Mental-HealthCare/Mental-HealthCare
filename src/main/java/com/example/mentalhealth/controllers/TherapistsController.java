@@ -37,6 +37,7 @@ public class TherapistsController {
         ApplicationUser existUserName = applicationUserRepository.findByUsername(user.getUsername());
         if (existUserName == null) {
             user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+//            user.setEnabled(true);
             therapistsRepository.save(user);
         } else {     // handling error message exist username
             System.out.println("Exist username");
