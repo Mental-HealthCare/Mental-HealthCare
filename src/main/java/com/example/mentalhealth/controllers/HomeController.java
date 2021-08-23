@@ -1,20 +1,16 @@
 package com.example.mentalhealth.controllers;
 
-import com.example.mentalhealth.models.ApplicationUser;
-import com.example.mentalhealth.models.Chat;
-import com.example.mentalhealth.models.Consultation;
-import com.example.mentalhealth.models.Messages;
-import com.example.mentalhealth.repository.ApplicationUserRepository;
-import com.example.mentalhealth.repository.ChatRepository;
-import com.example.mentalhealth.repository.ConsultationRepository;
-import com.example.mentalhealth.repository.MessagesRepository;
+import com.example.mentalhealth.models.*;
+import com.example.mentalhealth.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 public class HomeController {
@@ -27,6 +23,10 @@ public class HomeController {
     ChatRepository chatRepository;
     @Autowired
     MessagesRepository messagesRepository;
+    @Autowired
+    AdminRepository adminRepository;
+    @Autowired
+    BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @GetMapping("/signup")
     public String getSignUpPage() {
@@ -40,18 +40,18 @@ public class HomeController {
 
     @GetMapping("/")
     public String getHome(Principal p, Model model) {
-        List list = (List) applicationUserRepository.findAll();
+        List list = (List) chatRepository.findAll();
         if (list.size() == 0) {
             Chat chat = new Chat("Support_Group");
+
+            Admin admin = new Admin("admin",bCryptPasswordEncoder.encode("admin"),"Light","House","https://shanghai-date.com/uploads/g/t/t/h/q2t34kjldqrqv0pl7ihh.png");
             chatRepository.save(chat);
+            adminRepository.save(admin);
         }
-//            Consultation consultation = consultationRepository.findById(1).get();
-//            model.addAttribute("therapistsName",consultation.getTherapists().getFirstname());
-//            model.addAttribute("usersName",consultation.getApplicationUser().getFirstname());
-//            model.addAttribute("response",consultation.getResponses());
-//            model.addAttribute("userData",p.getName());
-//        model.addAttribute("messages", chatRepository.findById(1).get().getMessages() );
-        model.addAttribute("chat",messagesRepository.findAll());
+//        if (p.getName()!= null && Objects.equals(p.getName(), "admin")){
+//
+//        }
+
 
         return "home.html";
     }
