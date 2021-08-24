@@ -41,7 +41,7 @@ public class WebSocketController {
     public String getMessages( Model model){
         Iterable allData = webSocketRepo.findAll();
         model.addAttribute("webSocketRepo" , allData);
-        return "index.html";
+        return "webSocket.html";
     }
 
 }
