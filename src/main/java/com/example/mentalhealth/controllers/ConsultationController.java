@@ -43,18 +43,6 @@ public class ConsultationController {
         return new RedirectView("/myProfile");
     }
 
-    @GetMapping("/showOneConsultation/{consultationId}")
-    public String showOneConsultation(Principal p, @PathVariable Integer consultationId, Model m) {
-        Consultation oneConsultation = consultationRepository.findById(consultationId).get();
-        m.addAttribute("oneConsultation", oneConsultation);
-        m.addAttribute("testButton", true);
-        if (applicationUserRepository.findByUsername(p.getName()) != null) {
-            m.addAttribute("testButton", false);
-            m.addAttribute("updateConsultationButton", true);
-        }
-        return "oneConsultation";
-    }
-
     @RequestMapping(value = "/responseConsultation/{consultationId}", method = RequestMethod.GET)
     public RedirectView responseConsultation(@PathVariable Integer consultationId) {
         Consultation oneConsultation = consultationRepository.findById(consultationId).get();
@@ -63,20 +51,24 @@ public class ConsultationController {
         return new RedirectView("/showOneConsultation/" + consultationId);
     }
 
-    @GetMapping("/updateConsultation/{consultationId}")
-    public String updateConsultation(@PathVariable Integer consultationId, Model m) {
+    @GetMapping("/showOneConsultation/{consultationId}")
+    public String showOneConsultation(Principal p, @PathVariable Integer consultationId, Model m) {
         Consultation oneConsultation = consultationRepository.findById(consultationId).get();
         m.addAttribute("oneConsultation", oneConsultation);
-        m.addAttribute("testButton", false);
-        m.addAttribute("updateConsultationButton", true);
-        m.addAttribute("showUpdateConsultationForm", true);
+        m.addAttribute("testButton", true);
+        m.addAttribute("editResponseForm", false);
+        if (applicationUserRepository.findByUsername(p.getName()) != null) {
+            m.addAttribute("testButton", false);
+            m.addAttribute("updateConsultationButton", true);
+        }
         return "oneConsultation";
     }
 
     @RequestMapping(value = "/editConsultation/{consultationId}", method = RequestMethod.GET)
-    public RedirectView editConsultation(@RequestParam("body") String body, @PathVariable Integer consultationId) {
+    public RedirectView editConsultation(@RequestParam("subject") String subject, @RequestParam("body") String body, @PathVariable Integer consultationId) {
         Consultation oneConsultation = consultationRepository.findById(consultationId).get();
         oneConsultation.setBody(body);
+        oneConsultation.setSubject(subject);
         consultationRepository.save(oneConsultation);
         return new RedirectView("/showOneConsultation/" + consultationId);
     }
@@ -94,10 +86,26 @@ public class ConsultationController {
         return new RedirectView("/showOneConsultation/" + consultationId);
     }
 
+
     @RequestMapping("/DeleteResponse/{consultationId}/{responseId}")
     public RedirectView deleteResponse(@PathVariable Integer consultationId, @PathVariable Integer responseId) {
         responseRepository.deleteById(responseId);
         return new RedirectView("/showOneConsultation/" + consultationId);
+    }
+
+    @GetMapping("/showEditResponseForm/{consultationId}/{responseId}")
+    public String showEditResponseForm(@PathVariable Integer consultationId, @PathVariable Integer responseId, Model m, Principal p) {
+        Response response = responseRepository.findById(responseId).get();
+        Consultation oneConsultation = consultationRepository.findById(consultationId).get();
+        m.addAttribute("oneConsultation", oneConsultation);
+        m.addAttribute("responseToEdit", response);
+        m.addAttribute("testButton", true);
+        m.addAttribute("editResponseForm", true);
+        if (applicationUserRepository.findByUsername(p.getName()) != null) {
+            m.addAttribute("testButton", false);
+            m.addAttribute("updateConsultationButton", true);
+        }
+        return "oneConsultation";
     }
 
     @RequestMapping(value = "/editResponse/{consultationId}/{responseId}", method = RequestMethod.GET)

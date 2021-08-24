@@ -14,27 +14,27 @@
 
     <!-- ** Plugins Needed for the Project ** -->
     <!-- bootstrap -->
-    <link rel="stylesheet" th:href="@{plugins/bootstrap/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/plugins/bootstrap/bootstrap.min.css}"/>
     <!-- Slick Carousel -->
-    <link rel="stylesheet" th:href="@{plugins/slick/slick.css}"/>
-    <link rel="stylesheet" th:href="@{plugins/slick/slick-theme.css}"/>
+    <link rel="stylesheet" th:href="@{/plugins/slick/slick.css}"/>
+    <link rel="stylesheet" th:href="@{/plugins/slick/slick-theme.css}"/>
     <!-- FancyBox -->
-    <link rel="stylesheet" th:href="@{plugins/fancybox/jquery.fancybox.min.css}"/>
+    <link rel="stylesheet" th:href="@{/plugins/fancybox/jquery.fancybox.min.css}"/>
     <!-- fontawesome -->
-    <link rel="stylesheet" th:href="@{plugins/fontawesome/css/all.min.css}"/>
+    <link rel="stylesheet" th:href="@{/plugins/fontawesome/css/all.min.css}"/>
     <!-- animate.css -->
-    <link rel="stylesheet" th:href="@{plugins/animation/animate.min.css}"/>
+    <link rel="stylesheet" th:href="@{/plugins/animation/animate.min.css}"/>
     <!-- jquery-ui -->
-    <link rel="stylesheet" th:href="@{plugins/jquery-ui/jquery-ui.css}"/>
+    <link rel="stylesheet" th:href="@{/plugins/jquery-ui/jquery-ui.css}"/>
     <!-- timePicker -->
-    <link rel="stylesheet" th:href="@{plugins/timePicker/timePicker.css}"/>
+    <link rel="stylesheet" th:href="@{/plugins/timePicker/timePicker.css}"/>
 
     <!-- Stylesheets -->
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/profile.css}">
 
     <!--Favicon-->
-    <link rel="icon" th:href="@{images/favicon.png}" type="image/x-icon"/>
+    <link rel="icon" th:href="@{/images/favicon.png}" type="image/x-icon"/>
 </head>
 
 <body>
@@ -91,7 +91,7 @@
                 <div class="col-xl-4 col-lg-3">
                     <div class="logo">
                         <a href="index.html">
-                            <img loading="lazy" class="img-fluid" src="images/logo.png" alt="logo"/>
+                            <img loading="lazy" class="img-fluid" src="/images/logo.png" alt="logo"/>
                         </a>
                     </div>
                 </div>
@@ -206,7 +206,7 @@
     <!--End Main Header -->
 
     <!--Page Title-->
-    <section class="page-title text-center" style="background-image: url(images/background/profile-img.jpg)">
+    <section class="page-title text-center" style="background-image: url(/images/background/profile-img.jpg)">
         <div class="container">
             <div class="title-text">
                 <h1>PROFILE</h1>
@@ -274,7 +274,7 @@
                                                     <form th:if="${applicationUser}"
                                                           th:action="@{/DeleteOneConsultation/{id}(id=${oneConsultation.getId()})}"
                                                           method="post">
-                                                        <button type="submit" class="btn btn-outline-info"
+                                                        <button type="submit" class="btn btn-outline-danger"
                                                                 style="width: 40%; margin-bottom: 1rem">Delete
                                                         </button>
                                                     </form>
@@ -296,7 +296,7 @@
                     </div>
                     <!-- End Notification section -->
 
-                    <!-- // // // // BOTH SECTATION // // // // // // // // // // // // // // // // //  -->
+                    <!-- // // // // // // // // // // // BOTH SECTATION // // // // // // // // // // // // // // //  -->
 
                     <!-- Start of add consultation section -->
                     <div th:if="${applicationUser}" class="contact-area style-two pl-0 pr-0 pr-lg-4">
@@ -377,8 +377,7 @@
                     <div class="card">
                         <img
                                 class="card-img-top"
-                                src="https://st.depositphotos.com/2101611/3925/v/600/depositphotos_39258143-stock-illustration-businessman-avatar-profile-picture.jpg
-"
+                                th:src="${profileUser.getImage()}"
                         />
                         <div class="card-block">
                             <h4 class="card-title" style="display: inline-block;}"
@@ -545,7 +544,7 @@
                         <div class="footer-logo">
                             <figure>
                                 <a href="index.html">
-                                    <img loading="lazy" class="img-fluid" src="images/logo-2.png" alt="medic"/>
+                                    <img loading="lazy" class="img-fluid" src="/images/logo-2.png" alt="medic"/>
                                 </a>
                             </figure>
                         </div>
@@ -623,7 +622,7 @@
                                 <div class="media">
                                     <div class="media-left mr-3">
                                         <a href="blog-details.html">
-                                            <img loading="lazy" src="images/blog/post-thumb-small.jpg"
+                                            <img loading="lazy" src="/images/blog/post-thumb-small.jpg"
                                                  alt="post-thumb"/>
                                         </a>
                                     </div>
@@ -638,7 +637,7 @@
                                 <div class="media">
                                     <div class="media-left mr-3">
                                         <a href="blog-details.html">
-                                            <img loading="lazy" src="images/blog/post-thumb-small.jpg"
+                                            <img loading="lazy" src="/images/blog/post-thumb-small.jpg"
                                                  alt="post-thumb"/>
                                         </a>
                                     </div>
@@ -692,24 +691,24 @@
 </div>
 
 <!-- jquery -->
-<script src="plugins/jquery.min.js"></script>
+<script src="/plugins/jquery.min.js"></script>
 <!-- bootstrap -->
-<script src="plugins/bootstrap/bootstrap.min.js"></script>
+<script src="/plugins/bootstrap/bootstrap.min.js"></script>
 <!-- Slick Slider -->
-<script src="plugins/slick/slick.min.js"></script>
-<script src="plugins/slick/slick-animation.min.js"></script>
+<script src="/plugins/slick/slick.min.js"></script>
+<script src="/plugins/slick/slick-animation.min.js"></script>
 <!-- FancyBox -->
-<script src="plugins/fancybox/jquery.fancybox.min.js" defer></script>
+<script src="/plugins/fancybox/jquery.fancybox.min.js" defer></script>
 <!-- Google Map -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU" defer></script>
-<script src="plugins/google-map/gmap.js" defer></script>
+<script src="/plugins/google-map/gmap.js" defer></script>
 
 <!-- jquery-ui -->
-<script src="plugins/jquery-ui/jquery-ui.js" defer></script>
+<script src="/plugins/jquery-ui/jquery-ui.js" defer></script>
 <!-- timePicker -->
-<script src="plugins/timePicker/timePicker.js" defer></script>
+<script src="/plugins/timePicker/timePicker.js" defer></script>
 
 <!-- script js -->
-<script src="js/script.js"></script>
+<script src="/js/script.js"></script>
 </body>
 </html>
