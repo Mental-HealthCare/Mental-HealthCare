@@ -1,0 +1,414 @@
+<!-- 
+PROJECT: Medic | Medical HTML Template
+VERSION: 1.0.0
+AUTHOR: Themefisher
+WEBSITE: https://themefisher.com
+-->
+
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+
+  <!-- ** Basic Page Needs ** -->
+  <meta charset="utf-8">
+  <title>Medic | Medical HTML Template</title>
+
+  <!-- ** Mobile Specific Metas ** -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="Medical HTML Template">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="author" content="Themefisher">
+  <meta name="generator" content="Themefisher Medical HTML Template v1.0">
+  
+  <!-- ** Plugins Needed for the Project ** -->
+  <!-- bootstrap -->
+  <link rel="stylesheet" href="plugins/bootstrap/bootstrap.min.css">
+  <!-- Slick Carousel -->
+  <link rel="stylesheet" href="plugins/slick/slick.css">
+  <link rel="stylesheet" href="plugins/slick/slick-theme.css">
+  <!-- FancyBox -->
+  <link rel="stylesheet" href="plugins/fancybox/jquery.fancybox.min.css">
+  <!-- fontawesome -->
+  <link rel="stylesheet" href="plugins/fontawesome/css/all.min.css">
+  <!-- animate.css -->
+  <link rel="stylesheet" href="plugins/animation/animate.min.css">
+  <!-- jquery-ui -->
+  <link rel="stylesheet" href="plugins/jquery-ui/jquery-ui.css">
+  <!-- timePicker -->
+  <link rel="stylesheet" href="plugins/timePicker/timePicker.css">
+  
+  <!-- Stylesheets -->
+  <link href="css/style.css" rel="stylesheet">
+  
+  <!--Favicon-->
+  <link rel="icon" href="images/favicon.png" type="image/x-icon">
+
+</head>
+
+
+<body>
+  <div class="page-wrapper">
+
+    <!--Header Upper-->
+    <section class="header-uper">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-xl-4 col-lg-3">
+                    <div class="logo">
+                        <a href="index.html">
+                            <img loading="lazy" id="main-logo" class="img-fluid" src="images/eee.png" alt="logo">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-xl-8 col-lg-9">
+                    <div class="right-side">
+                        <ul class="contact-info pl-0 mb-4 mb-md-0">
+                            <li class="item text-left">
+                                <div class="icon-box">
+                                    <i class="far fa-envelope"></i>
+                                </div>
+                                <strong>Email</strong>
+                                <br>
+                                <a href="mailto:info@medic.com">
+                                    <span>info@lighthouse.com</span>
+                                </a>
+                            </li>
+                            <li class="item text-left">
+                                <div class="icon-box">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <strong>Call Now</strong>
+                                <br>
+                                <span>+ (962) - 123 - 4567</span>
+                            </li>
+                        </ul>
+                        <div sec:authorize="!isAuthenticated()" class="link-btn text-center text-lg-right">
+                            <a th:href="@{/login}" class="btn-style-one">Log In</a>
+                            <a th:href="@{/signup}" class="btn-style-one">Sign up</a>
+                        </div>
+                        <div sec:authorize="isAuthenticated()" class="link-btn text-center text-lg-right">
+                            <a th:href="@{/perform_logout}" class="btn-style-one">Log Out</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+    <!--Header Upper-->
+
+
+    <!--Main Header-->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarLinks"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarLinks">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="blog.html">Awareness</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="service.html">Therapists</a>
+                    </li>
+                    <li sec:authorize="isAuthenticated()" class="nav-item">
+                        <a class="nav-link" th:href="@{/chat}">Chat</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About Us</a>
+                    </li>
+                    <li sec:authorize="isAuthenticated()" class="nav-item">
+                        <a class="nav-link" th:href="@{/myProfile}">Profile</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!--End Main Header -->
+
+<!--Page Title-->
+<section class="page-title text-center" style="background-image:url(images/background/12.jpg);">
+    <div class="container">
+        <div class="title-text">
+            <h1>personality disorders</h1>
+            <ul class="title-menu clearfix">
+               
+            </ul>
+        </div>
+    </div>
+</section>
+<!--End Page Title-->
+
+
+<!-- Contact Section -->
+<section class="blog-section section style-four style-five">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="left-side">
+          <div class="item-holder">
+            <div class="image-box">
+              <figure>
+                <a href="single-blog.html"><img loading="lazy" class="img-fluid" src="images/blog/16.jpg" alt=""></a>
+              </figure>
+            </div>
+            <div class="content-text">
+              <h2> personality disorders</h2>
+              <span>Who can diagnose me with a personality disorder?  </span>
+                <p>You can only be diagnosed with a personality disorder by a mental health professional experienced in diagnosing and treating mental health problems, such as a psychiatrist or psychologist – not by your GP.
+                </p>
+              <span>What types of personality disorder are there?            </span>
+                <p>Currently psychiatrists tend to use a system of diagnosis which identifies ten types of personality disorder. These are grouped into three categories.
+                </p>
+                
+                <div class="text">
+
+                 <span>Suspicious</span>
+                <p>
+                    - Paranoid personality disorder<br>
+                    - Schizoid personality disorder<br>
+                    - Schizotypal personality disorder<br>
+                </p>
+
+                <p>
+                  <spma>Emotional and impulsive:<br> </spma>
+                  -Antisocial personality disorder (ASPD)<br>
+                  - Borderline personality disorder (BPD)<br>
+                  - Histrionic personality disorder<br>
+                  - Narcissistic personality disorder<br>
+                </p>
+
+               <span>Anxious:</span> 
+               <p>
+                   - Avoidant personality disorder
+                   - Dependent personality disorder
+                   - Obsessive compulsive personality disorder (OCPD)
+               </p>
+                <p>
+                    Each personality disorder has its own set of diagnostic criteria. 
+                    To get a specific diagnosis you must meet some of these criteria. 
+                    The minimum amount you need to meet is different for different types, 
+                    but it should always be more than one or two.
+                     If you meet criteria for more than one type this may be called mixed personality disorder. 
+                </p>
+
+                <p>
+                    A wide range of people may get the same diagnosis, 
+                    despite having very different personalities and different individual experiences. 
+                    Your experience of living with a personality disorder will be unique to you.
+                </p>
+                <p>
+                    <span> Paranoid personality disorder  </span>
+                    <span> The thoughts, feelings and experiences associated with paranoia may cause you to: </span>
+
+                    - find it hard to confide in people, even your friends and family<br>
+                    - find it very difficult to trust other people, believing they will use you or take advantage of you
+                    have difficulty relaxing<br>
+                    - read threats and danger (which others don't see) into everyday situations, innocent remarks or casual looks from others.<br>
+                    - This might become such a big problem in your life that you are given a diagnosis of paranoid personality disorder. See our page on paranoia for more information.<br>
+                </p>
+                <span>Antisocial personality disorder</span>
+                <p>
+                    It is natural to sometimes put our own needs, pleasure or personal gain before those of others around us. 
+                    However, if these actions occur very frequently and you struggle to keep stability in your life,
+                     or you regularly act impulsively out of anger or lack of consideration for others,
+                      this could lead to a diagnosis of antisocial personality disorder.</p>
+
+                      <p>
+                        Everyone will have a different experience of paranoia. But here are some examples of common types of paranoid thoughts.
+
+                        You might think that:
+                         
+                        you are being talked about behind your back or watched by people or organisations (either on or offline)
+                        other people are trying to make you look bad or exclude you
+                        you are at risk of being physically harmed or killed
+                        people are using hints and double meanings to secretly threaten you or make you feel bad
+                        other people are deliberately trying to upset or irritate you
+                        people are trying to take your money or possessions
+                        your actions or thoughts are being interfered with by others
+                        you are being controlled or that the government is targeting you
+                       You might have these thoughts very strongly all the time, or just occasionally when you are in a stressful situation. They might cause you a lot of distress or you might not really mind them too much.
+                      </p>
+              
+              
+              
+                    </div>
+            </div>
+          </div>
+        </div>
+     </div>
+</div>
+ </div>
+</div>      
+</section>
+<!-- End Contact Section -->
+
+<!--footer-main-->
+<footer class="footer-main">
+  <div class="footer-top">
+      <div class="container">
+          <div class="row justify-content-between">
+              <div class="col-lg-4 mb-5 mb-lg-0">
+                  <div class="about-widget">
+                      <div class="footer-logo">
+                          <h2>Lighthouse E-Clinic</h2>
+                          <!-- <figure>
+                            <a href="index.html">
+                              <img loading="lazy" class="img-fluid" src="images/eee.png" alt="medic" >
+                            </a>
+                          </figure> -->
+                      </div>
+                      <p>Lighthouse E-Clinic is a new and innovative online system that delivers clinical services to people experiencing mental health problems. The makes clinical care free and accessible to people wherever and whenever they need it.</p>
+                      <ul class="location-link">
+
+                          <li class="item">
+                              <i class="far fa-envelope" aria-hidden="true"></i>
+                              <a href="mailto:support@medic.com">
+                                  <p>support@lighthouse.com</p>
+                              </a>
+                          </li>
+                          <li class="item">
+                              <i class="fas fa-phone" aria-hidden="true"></i>
+                              <p>(+962) 123 4567</p>
+                          </li>
+                      </ul>
+                      <ul class="list-inline social-icons">
+                          <li class="list-inline-item"><a href="https://github.com/Mental-HealthCare/Mental-HealthCare"
+                                                          aria-label="facebook"><i class="fab fa-facebook-f"></i></a>
+                          </li>
+                          <li class="list-inline-item"><a href="https://github.com/Mental-HealthCare/Mental-HealthCare"
+                                                          aria-label="twitter"><i class="fab fa-twitter"></i></a>
+                          </li>
+                          <li class="list-inline-item"><a href="https://github.com/Mental-HealthCare/Mental-HealthCare"
+                                                          aria-label="instagram"><i class="fab fa-instagram"></i></a>
+                          </li>
+                          <li class="list-inline-item"><a href="https://github.com/Mental-HealthCare/Mental-HealthCare"
+                                                          aria-label="github"><i class="fab fa-github"></i></a>
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+<!--                    ToDo: Edit links-->
+              <div class="col-lg-3 col-md-5 mb-3 mb-md-0">
+                  <h2>QUICK LINKS</h2>
+                  <ul class="menu-link">
+                      <li>
+                          <a href="index.html">
+                              <i class="fa fa-angle-right" aria-hidden="true"></i>Home</a>
+                      </li>
+                      <li>
+                          <a href="blog.html">
+                              <i class="fa fa-angle-right" aria-hidden="true"></i>Awareness</a>
+                      </li>
+                      <li>
+                          <a href="service.html">
+                              <i class="fa fa-angle-right" aria-hidden="true"></i>Therapists</a>
+                      </li>
+                      <li>
+                          <a href="about.html">
+                              <i class="fa fa-angle-right" aria-hidden="true"></i>About Us</a>
+                      </li>
+
+                  </ul>
+              </div>
+              <div class="col-lg-4 col-md-7">
+                  <div class="social-links">
+                      <h2>Recent Posts</h2>
+                      <ul>
+                          <li class="item">
+                              <div class="media">
+                                  <div class="media-left mr-3">
+                                      <a href="blog-details1.html">
+                                          <img loading="lazy" src="images/blog/15.jpg"
+                                               alt="post-thumb">
+                                      </a>
+                                  </div>
+                                  <div class="media-body">
+                                      <h5><a href="blog-details1.html">Personality disorders</a></h5>
+                                      <p>Our personality is the collection of thoughts, feelings and behaviours that makes each of us the individuals we are.</p>
+                                  </div>
+                              </div>
+                          </li>
+                          <li class="item">
+                              <div class="media">
+                                  <div class="media-left mr-3">
+                                      <a href="blog-details.html">
+                                          <img loading="lazy" src="images/blog/19.jpg"
+                                               alt="post-thumb">
+                                      </a>
+                                  </div>
+                                  <div class="media-body">
+                                      <h5><a href="blog-details.html">Obsessive-compulsive disorder (OCD)</a></h5>
+                                      <p>Obsessions are unwelcome thoughts, images, urges, worries or doubts that repeatedly appear in your mind.</p>
+                                  </div>
+                              </div>
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="footer-bottom">
+      <div class="container clearfix">
+          <div class="copyright-text">
+              <p>&copy; Copyright 2021. by <a
+                      href="https://github.com/Mental-HealthCare/Mental-HealthCare">Mental Health Clinic Team</a></p>
+          </div>
+          <ul class="footer-bottom-link">
+              <li>
+                  <a href="index.html">Home</a>
+              </li>
+              <li>
+                  <a href="about.html">About</a>
+              </li>
+              <li>
+                  <a href="https://github.com/Mental-HealthCare/Mental-HealthCare">Contact</a>
+              </li>
+          </ul>
+      </div>
+  </div>
+</footer>
+
+<!-- scroll-to-top -->
+<div id="back-to-top" class="back-to-top">
+  <i class="fa fa-angle-up"></i>
+</div>
+
+</div>
+<!--End pagewrapper-->
+
+
+<!--Scroll to top-->
+<div class="scroll-to-top scroll-to-target" data-target=".header-top">
+  <span class="icon fa fa-angle-up"></span>
+</div>
+
+
+<!-- jquery -->
+<script src="plugins/jquery.min.js"></script>
+<!-- bootstrap -->
+<script src="plugins/bootstrap/bootstrap.min.js"></script>
+<!-- Slick Slider -->
+<script src="plugins/slick/slick.min.js"></script>
+<script src="plugins/slick/slick-animation.min.js"></script>
+<!-- FancyBox -->
+<script src="plugins/fancybox/jquery.fancybox.min.js" defer></script>
+<!-- Google Map -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU" defer></script>
+<script src="plugins/google-map/gmap.js" defer></script>
+
+<!-- jquery-ui -->
+<script src="plugins/jquery-ui/jquery-ui.js" defer></script>
+<!-- timePicker -->
+<script src="plugins/timePicker/timePicker.js" defer></script>
+
+<!-- script js -->
+<script src="js/script.js"></script>
+</body>
+
+</html>
