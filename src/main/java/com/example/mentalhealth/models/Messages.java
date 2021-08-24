@@ -1,11 +1,19 @@
 package com.example.mentalhealth.models;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 import javax.persistence.*;
 import java.util.Date;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
+@EnableScheduling
 public class Messages {
 
     @Id
@@ -18,9 +26,6 @@ public class Messages {
 
     @ManyToOne
     private Chat chat;  //relationship with Chat
-
-    public Messages() {
-    }
 
 
     public Messages(String body, ApplicationUser sender, Chat chat) {
@@ -66,4 +71,5 @@ public class Messages {
     public void setChat(Chat chat) {
         this.chat = chat;
     }
+
 }
