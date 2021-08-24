@@ -18,6 +18,7 @@ public class Consultation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String subject;
+    @Column(length = 3000)
     private String body;
     @CreationTimestamp
     private Date time;
