@@ -15,7 +15,6 @@ public class Response {
     private Date time;
     private boolean isTherapists;
 
-
     @ManyToOne
     private Consultation consultation;
 

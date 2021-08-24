@@ -98,7 +98,6 @@
                 </div>
                 <!-- ------------------------------End Of Edit Consultation Modals----------------------------------------------->
 
-
                 <div class="card" style="margin-bottom:10px;">
                     <div class="card-block">
                         <h4 th:text="${oneConsultation.getSubject()}" style="margin-bottom:15px;"></h4>
@@ -119,9 +118,9 @@
                 <form th:if="${editResponseForm}"
                       th:action="@{/editResponse/{consultationId}/{responseId}(consultationId=${oneConsultation.getId()}, responseId=${responseToEdit.getId()})}"
                       method="get">
-                    <input rows="3" name="body" th:value="${responseToEdit.getBody()}"
-                           required></input>
-                    <button type="submit">Save changes</button>
+                    <input class="form-control" name="body" th:value="${responseToEdit.getBody()}"
+                          style="    width: 80%; display: inline-block; margin: 1rem;" required></input>
+                    <button class="btn btn-outline-info" type="submit">Save changes</button>
                 </form>
                 <!-------------------------------------End of edit response form---------------------------------------------->
 
@@ -130,7 +129,7 @@
                         <!--get Responses()-->
                         <div>
                             <!--Start of consultations and response section -->
-                            <div th:each="oneResponse : ${oneConsultation.getResponses()}">
+                            <div th:each="oneResponse : ${allResponse}">
                                 <div th:if="${oneResponse.isTherapists()}"
                                      style="text-align: right;float:right;display:block; width: 100%;    margin-bottom: 1.5rem;">
                                     <div style=" display: inline-block; max-width: 70%;">

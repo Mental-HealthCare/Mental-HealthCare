@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 @Controller
 public class ConsultationController {
@@ -55,6 +58,17 @@ public class ConsultationController {
     public String showOneConsultation(Principal p, @PathVariable Integer consultationId, Model m) {
         Consultation oneConsultation = consultationRepository.findById(consultationId).get();
         m.addAttribute("oneConsultation", oneConsultation);
+        ArrayList responses = (ArrayList) responseRepository.findAllByConsultation(oneConsultation);
+        Collections.sort(responses, new Comparator<Response>() {
+            public int compare(Response res1, Response res2) {
+                if (res1.getId() > res2.getId())
+                    return 1;
+                if (res1.getId() < res2.getId())
+                    return -1;
+                return 0;
+            }
+        });
+        m.addAttribute("allResponse" , responses);
         m.addAttribute("testButton", true);
         m.addAttribute("editResponseForm", false);
         if (applicationUserRepository.findByUsername(p.getName()) != null) {
@@ -98,6 +112,17 @@ public class ConsultationController {
         Response response = responseRepository.findById(responseId).get();
         Consultation oneConsultation = consultationRepository.findById(consultationId).get();
         m.addAttribute("oneConsultation", oneConsultation);
+        ArrayList responses = (ArrayList) responseRepository.findAllByConsultation(oneConsultation);
+        Collections.sort(responses, new Comparator<Response>() {
+            public int compare(Response res1, Response res2) {
+                if (res1.getId() > res2.getId())
+                    return 1;
+                if (res1.getId() < res2.getId())
+                    return -1;
+                return 0;
+            }
+        });
+        m.addAttribute("allResponse" , responses);
         m.addAttribute("responseToEdit", response);
         m.addAttribute("testButton", true);
         m.addAttribute("editResponseForm", true);

@@ -262,7 +262,7 @@
                                             aria-labelledby="headingOne"
                                             data-parent="#accordionGroup"
                                     >
-                                        <div class="card-body">
+                                        <div class="card-body" style="height: 20rem; overflow: auto;">
                                             <div th:each="oneConsultation: ${Consultations}" class="list-group">
                                                 <div th:if="${!oneConsultation.isTaken()}">
                                                     <div class="d-flex w-100 justify-content-between">
@@ -422,7 +422,7 @@
                                               th:text="${oneConsultation.getTime()}"></span>
                                     </div>
                                 </div>
-                                <p class="widget-49-meeting-points" th:text="${oneConsultation.getBody()}"></p>
+                                <p class="widget-49-meeting-points" th:text="${oneConsultation.getBody()}" style="height: 7rem; overflow: hidden;"></p>
                                 <div class="widget-49-meeting-action">
                                     <form th:if="${applicationUser}" style="display:inline-block"
                                           th:action="@{/DeleteOneConsultation/{id}(id=${oneConsultation.getId()})}"
