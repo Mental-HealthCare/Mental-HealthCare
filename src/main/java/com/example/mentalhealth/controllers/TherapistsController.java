@@ -63,17 +63,8 @@ public class TherapistsController {
         return "therapistsProfile";
     }
 
-    @GetMapping("/showAddConsultationForm/{therapistId}")
-    public String showAddConsultationForm(@PathVariable Integer therapistId, Model m) {
-        m.addAttribute("addConsultationButton", true);
-        m.addAttribute("showForm", true);
-        Therapists oneTherapist = therapistsRepository.findById(therapistId).get();
-        m.addAttribute("profileUser", oneTherapist);
-        return "therapistsProfile";
-    }
-
     @PostMapping("/addConsultationTherapist/{therapistId}")
-    public RedirectView addConsultationTherapist(@RequestParam("body") String subject,@RequestParam("body") String body, @PathVariable Integer therapistId, Principal p) {
+    public RedirectView addConsultationTherapist(@RequestParam("subject") String subject,@RequestParam("body") String body, @PathVariable Integer therapistId, Principal p) {
         Therapists oneTherapist = therapistsRepository.findById(therapistId).get();
         ApplicationUser user = applicationUserRepository.findByUsername(p.getName());
         Consultation newConsultation = new Consultation(subject, body, false, user, oneTherapist);
