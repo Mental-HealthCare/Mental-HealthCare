@@ -38,7 +38,7 @@ public class TherapistsController {
         ApplicationUser existUserName = applicationUserRepository.findByUsername(user.getUsername());
         if (existUserName == null) {
             user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-//            user.setEnabled(true);
+            user.setEnabled(true);
             therapistsRepository.save(user);
         } else {     // handling error message exist username
             System.out.println("Exist username");
@@ -73,10 +73,10 @@ public class TherapistsController {
     }
 
     @PostMapping("/addConsultationTherapist/{therapistId}")
-    public RedirectView addConsultationTherapist(@RequestParam("body") String body, @PathVariable Integer therapistId, Principal p) {
+    public RedirectView addConsultationTherapist(@RequestParam("body") String subject,@RequestParam("body") String body, @PathVariable Integer therapistId, Principal p) {
         Therapists oneTherapist = therapistsRepository.findById(therapistId).get();
         ApplicationUser user = applicationUserRepository.findByUsername(p.getName());
-        Consultation newConsultation = new Consultation(body, false, user, oneTherapist);
+        Consultation newConsultation = new Consultation(subject, body, false, user, oneTherapist);
         consultationRepository.save(newConsultation);
         return new RedirectView("/therapistsProfile/" + therapistId);
     }

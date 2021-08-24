@@ -1,5 +1,6 @@
 package com.example.mentalhealth.models;
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -26,6 +27,8 @@ public class Therapists implements UserDetails{
     private String experiences;
     private Integer numOfSessions;
     private boolean isEnabled;
+    @CreationTimestamp
+    private Date time;
 
 
     @OneToMany (mappedBy = "therapists")
@@ -66,6 +69,13 @@ public class Therapists implements UserDetails{
         Consultation = consultation;
     }
 
+    public Date getTime() {
+        return time;
+    }
+
+    public void setTime(Date time) {
+        this.time = time;
+    }
 
     // getter for id
     public Integer getId() {

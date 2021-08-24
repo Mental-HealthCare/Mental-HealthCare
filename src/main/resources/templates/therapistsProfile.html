@@ -14,6 +14,8 @@
     </form>
 
     <form th:if="${showForm}" th:action="@{/addConsultationTherapist/{id}(id=${profileUser.getId()})}" method="post">
+        <label for="subject">Consultation Subject</label>
+        <input id="subject" field="*{subject}" name="subject" required>
         <textarea rows="3" name="body" required></textarea>
         <button type="submit">SEND</button>
     </form>

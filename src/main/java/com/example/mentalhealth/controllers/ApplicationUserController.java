@@ -3,6 +3,7 @@ package com.example.mentalhealth.controllers;
 import com.example.mentalhealth.models.ApplicationUser;
 import com.example.mentalhealth.models.Therapists;
 import com.example.mentalhealth.repository.ApplicationUserRepository;
+import com.example.mentalhealth.repository.ConsultationRepository;
 import com.example.mentalhealth.repository.TherapistsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -22,6 +23,8 @@ public class ApplicationUserController {
     BCryptPasswordEncoder bCryptPasswordEncoder;
     @Autowired
     TherapistsRepository therapistsRepository;
+    @Autowired
+    ConsultationRepository consultationRepository;
 
     @PostMapping("/signupUser")
     public RedirectView addNewUser(@ModelAttribute ApplicationUser user) {
@@ -44,13 +47,14 @@ public class ApplicationUserController {
             Therapists therapists = therapistsRepository.findByUsername(p.getName());
             m.addAttribute("profileUser", therapists);
             m.addAttribute("Consultations", therapists.getConsultation());
+            m.addAttribute("applicationUser", false);
         } else {
             m.addAttribute("profileUser", user);
             m.addAttribute("Consultations", user.getConsultation());
             m.addAttribute("applicationUser", true);
 
             // get all therapists for consultation adding
-            Iterable allTherapists = therapistsRepository.findAll();
+            Iterable allTherapists = therapistsRepository.findAllByIsEnabled(true);
             m.addAttribute("allTherapists", allTherapists);
         }
         return "myProfile";
