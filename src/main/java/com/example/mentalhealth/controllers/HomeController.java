@@ -38,6 +38,28 @@ public class HomeController {
         return "login.html";
     }
 
+    @GetMapping("/aware")
+    public String getAwarePage() {
+        return "blog.html";
+    }
+    @GetMapping("/aware1")
+    public String getAwarePage1() {
+        return "blog-details.html";
+    }
+    @GetMapping("/aware2")
+    public String getAwarePage2() {
+        return "blog-details1.html";
+    }
+    @GetMapping("/aware3")
+    public String getAwarePage3() {
+        return "blog-details2.html";
+    }
+    @GetMapping("/aware4")
+    public String getAwarePage4() {
+        return "blog-details3.html";
+    }
+
+
     @GetMapping("/")
     public String getHome(Principal p, Model model) {
         List list = (List) chatRepository.findAll();
@@ -53,7 +75,7 @@ public class HomeController {
 //        }
 
 
-        return "home.html";
+        return "index.html";
     }
 
 //    @GetMapping("/chat")
