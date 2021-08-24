@@ -14,7 +14,8 @@
 
     <form th:if="${showUpdateConsultationForm}" th:action="@{/editConsultation/{id}(id=${oneConsultation.getId()})}"
           method="get">
-        <textarea rows="3" name="body" required></textarea>
+        <input th:value="${oneConsultation.getSubject()}" name="subject" required>
+        <input rows="3" name="body"  th:value="${oneConsultation.getBody()}" required></input>
         <button type="submit">Update</button>
     </form>
 
@@ -32,7 +33,7 @@
         <div th:if="${testButton}">
             <form th:action="@{/editResponse/{consultationId}/{responseId}(consultationId=${oneConsultation.getId()}, responseId=${oneResponse.getId()})}"
                   method="get">
-                <textarea rows="3" name="body" required></textarea>
+                <input rows="3" name="body"  th:value="${oneResponse.getBody()}" required></input>
                 <button type="submit">Update</button>
             </form>
             <form th:action="@{/DeleteResponse/{consultationId}/{responseId}(consultationId=${oneConsultation.getId()}, responseId=${oneResponse.getId()})}"
@@ -46,7 +47,7 @@
         <div th:if="${!testButton}">
             <form th:action="@{/editResponse/{consultationId}/{responseId}(consultationId=${oneConsultation.getId()}, responseId=${oneResponse.getId()})}"
                   method="get">
-                <textarea rows="3" name="body" required></textarea>
+                <input rows="3" name="body"  th:value="${oneResponse.getBody()}" required></input>
                 <button type="submit">Update</button>
             </form>
             <form th:action="@{/DeleteResponse/{consultationId}/{responseId}(consultationId=${oneConsultation.getId()}, responseId=${oneResponse.getId()})}"
@@ -58,7 +59,6 @@
     </div>
     <hr>
 </div>
-
 
 <form action="/addResponse" method="post">
     <input type="hidden" field="*{consultationId}" name="consultationId" th:value="${oneConsultation.getId()}">

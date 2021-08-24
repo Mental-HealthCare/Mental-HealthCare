@@ -10,7 +10,6 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @EnableScheduling
@@ -33,6 +32,8 @@ public class Messages {
         this.sender = sender;
         this.chat = chat;
     }
+
+    public Messages(){}
 
     public ApplicationUser getSender() {
         return sender;

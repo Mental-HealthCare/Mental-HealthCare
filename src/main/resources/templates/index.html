@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Hello WebSocket</title>
+    <title>Ibrahim Alhamshari(webSocket)</title>
     <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="/main.css" rel="stylesheet">
     <script src="/webjars/jquery/jquery.min.js"></script>
@@ -25,15 +25,6 @@
                 </div>
             </form>
         </div>
-        <div class="col-md-6">
-            <form class="form-inline">
-                <div class="form-group">
-                    <label for="name">What is your name?</label>
-                    <input type="text" id="name" class="form-control" placeholder="Your name here...">
-                </div>
-                <button id="send" class="btn btn-default" type="submit">Send</button>
-            </form>
-        </div>
     </div>
     <div class="row">
         <div class="col-md-12">
@@ -42,11 +33,32 @@
                 <tr>
                     <th>Greetings</th>
                 </tr>
+
                 </thead>
+                <tbody th:each="message: ${webSocketRepo}">
+                <tr>
+                    <td th:text="${message.getUser()}"></td>
+                </tr>
+                <tr>
+                    <td th:text="${message.getMessage()}"></td>
+                </tr>
+                <tr>
+                    <td th:text="${message.getTime()}"></td>
+                </tr>
+                </tbody>
                 <tbody id="greetings">
                 </tbody>
             </table>
         </div>
+    </div>
+    <div class="col-md-6">
+        <form class="form-inline">
+            <div class="form-group">
+                <label for="name">Type the message: </label>
+                <input type="text" id="name" class="form-control" placeholder="Your message here...">
+            </div>
+            <button id="send" class="btn btn-default" type="submit">Send</button>
+        </form>
     </div>
 </div>
 </body>

@@ -8,11 +8,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import javax.persistence.*;
 import java.util.List;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
-@EnableScheduling
 public class Chat {
 
     @Id
@@ -22,6 +18,10 @@ public class Chat {
 
     @OneToMany (mappedBy =  "chat")     //relationship with Messages
     private List<Messages> messages;
+
+
+    public Chat() {
+    }
 
     public Chat(String chatName) {
         this.chatName = chatName;

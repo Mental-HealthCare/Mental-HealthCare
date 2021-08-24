@@ -1,44 +1,68 @@
+
 package com.example.mentalhealth.controllers;
 
+import com.example.mentalhealth.models.ApplicationUser;
 import com.example.mentalhealth.models.Chat;
+import com.example.mentalhealth.models.Consultation;
 import com.example.mentalhealth.models.Messages;
-import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.handler.annotation.Payload;
-import org.springframework.messaging.handler.annotation.SendTo;
-import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
+import com.example.mentalhealth.repository.ApplicationUserRepository;
+import com.example.mentalhealth.repository.ChatRepository;
+import com.example.mentalhealth.repository.ConsultationRepository;
+import com.example.mentalhealth.repository.MessagesRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.util.HtmlUtils;
+import org.springframework.web.servlet.view.RedirectView;
+
+import java.security.Principal;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
 
 @Controller
 public class ChatController {
+    @Autowired
+    ApplicationUserRepository applicationUserRepository;
+    @Autowired
+    ConsultationRepository consultationRepository;
+    @Autowired
+    ChatRepository chatRepository;
+    @Autowired
+    MessagesRepository messagesRepository;
 
-    @MessageMapping("/hello")// the endpoint which will be called from the client
-    @SendTo("/topic/greetings")
-    public Chat greet(@Payload Messages messages) throws Exception{
-        System.out.println(messages.getId());
-        System.out.println(messages.hashCode());
-        System.out.println( messages);
-        System.out.println(messages.toString());
-        System.out.println("============" + messages.getChat());
-        System.out.println("============" + messages.getBody());
-        System.out.println("============" + messages.getTime());
-
-        Thread.sleep(2000);
-        Chat chatMessage = new Chat("Hello," + HtmlUtils.htmlEscape(messages.getBody()));
-        return chatMessage;
+    @GetMapping("/chat")
+    public String getChat(Principal p, Model m) {
+        Chat chat = chatRepository.findById(1).get();
+        ApplicationUser user = applicationUserRepository.findByUsername(p.getName());
+        List users = (List) applicationUserRepository.findAll();
+        if (users.size() < 10) {
+            m.addAttribute("listOfUsers", users);
+        } else {
+            Collections.shuffle(users);
+            int randomSeriesLength = 9;
+            List randomSeries = users.subList(0, randomSeriesLength);
+            m.addAttribute("listOfUsers", randomSeries);
+        }
+//        m.addAttribute("numberOfMessage", chat.getMessages().size());
+        m.addAttribute("chatData", chat.getMessages());
+//        m.addAttribute("chatData", chat.getMessages().get(1).getTime());
+//        m.addAttribute("chatData", chat.getMessages().get(1).getSender().getFirstname());
+        m.addAttribute("userData", user);
+        m.addAttribute("loggedInUser", p.getName());
+//        if(Objects.equals(p.getName(), chat.getMessages().get(1).getSender().getFirstname()))
+        return "WebSocket.html";
     }
 
-
-
-    @GetMapping("/getMessages")
-    public String getMessages(){
-        return "index.html";
-    }
-
-    @GetMapping("/sendMessage")
-    public String sendMessage(){
-        return "sendMessage.html";
+    @PostMapping("/sentMassage")
+    public RedirectView sentMassage(Principal p, @RequestParam String body) {
+        Chat chat = chatRepository.findById(1).get();
+        ApplicationUser user = applicationUserRepository.findByUsername(p.getName());
+        Messages newMessage = new Messages(body, user, chat);
+        messagesRepository.save(newMessage);
+        return new RedirectView("/chat");
     }
 }
+
