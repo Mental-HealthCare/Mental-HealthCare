@@ -447,3 +447,7 @@ h5 {
     cursor: pointer;
     border: solid 1px #BA68C8
 }
+
+select:active, select:hover {
+  outline-color: red
+}

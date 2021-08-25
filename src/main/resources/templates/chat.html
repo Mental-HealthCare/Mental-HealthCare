@@ -208,19 +208,20 @@
                                         <img th:src="@{${singleMessage.getSender().getImage()}}"
                                              class="rounded-circle user_img_msg">
                                     </div>
-                                    <div class="msg_cotainer">
+                                    <div style="width: fit-content ;max-width:60%">
+                                        <div class="msg_cotainer">
                                         <span th:text="${singleMessage.getBody()}"></span>
-                                        <span class="msg_time"
-                                              th:text="${singleMessage.getTime()}+' '+${singleMessage.getSender().getFirstname()}"></span>
+                                        </div>
+                                        <div style="font-size:9px; display: contents;" class="msg_time" th:text="${singleMessage.getTime()}+' '+${singleMessage.getSender().getFirstname()}"></div>
                                     </div>
                                 </div>
                                 <div th:unless="${loggedInUser==singleMessage.getSender().getUsername()}"
                                      class="d-flex justify-content-end mb-4">
-                                    <div class="msg_cotainer_send">
-                                        <span th:text="${singleMessage.getBody()}"></span>
-                                        <br>
-                                        <span class="msg_time_send"
-                                              th:text="${singleMessage.getTime()}+' '+${singleMessage.getSender().getFirstname()}"></span>
+                                    <div style="width: fit-content ;max-width:60%">
+                                        <div class="msg_cotainer_send">
+                                            <span th:text="${singleMessage.getBody()}"></span>
+                                        </div>
+                                        <div style="font-size:9px; display: contents;" class="msg_time_send" th:text="${singleMessage.getTime()}+' '+${singleMessage.getSender().getFirstname()}"></div>
                                     </div>
                                     <div class="img_cont_msg">
                                         <img th:src="@{${singleMessage.getSender().getImage()}}"
@@ -231,7 +232,7 @@
                                 <!---->
                             </div>
                         </div>
-                        <div class="card-footer">
+                        <div th:if="${messagesSender}" class="card-footer">
                             <form th:action="@{/sentMassage}" method="post">
                                 <div class="input-group">
                                     <!--                        <div class="input-group-append">-->
@@ -257,12 +258,13 @@
             </div>
         </div>
     </section>
+
     <!--footer-main-->
     <footer class="footer-main">
         <div class="footer-top">
             <div class="container">
                 <div class="row justify-content-between">
-                    <div class="col-lg-4 mb-5 mb-lg-0">
+                    <div class="col-lg-5 mb-5 mb-lg-0">
                         <div class="about-widget">
                             <div class="footer-logo">
                                 <h2>Lighthouse E-Clinic</h2>
@@ -272,7 +274,7 @@
                                   </a>
                                 </figure> -->
                             </div>
-                            <p>Lighthouse E-Clinic is a new and innovative online system that delivers clinical services to people experiencing mental health problems. The makes clinical care free and accessible to people wherever and whenever they need it.</p>
+                            <p style="width:90%">Lighthouse E-Clinic is a new and innovative online system that delivers clinical services to people experiencing mental health problems. The makes clinical care free and accessible to people wherever and whenever they need it.</p>
                             <ul class="location-link">
 
                                 <li class="item">
@@ -303,7 +305,7 @@
                         </div>
                     </div>
                     <!--                    ToDo: Edit links-->
-                    <div class="col-lg-3 col-md-5 mb-3 mb-md-0">
+                    <div class="col-lg-2 col-md-5 mb-3 mb-md-0">
                         <h2>QUICK LINKS</h2>
                         <ul class="menu-link">
                             <li>

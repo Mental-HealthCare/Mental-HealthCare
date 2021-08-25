@@ -87,6 +87,7 @@ public class Therapists implements UserDetails{
         return password;
     }
 
+
     @Override
     public String getUsername() {
         return username;
@@ -176,6 +177,10 @@ public class Therapists implements UserDetails{
 
     public void setNumOfSessions(Integer numOfSessions) {
         this.numOfSessions = numOfSessions;
+    }
+
+    public void setEnabled() {
+        this.isEnabled = !this.isEnabled;
     }
 
     public void setEnabled(boolean enabled) {

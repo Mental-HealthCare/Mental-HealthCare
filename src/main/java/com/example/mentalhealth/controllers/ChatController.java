@@ -51,6 +51,9 @@ public class ChatController {
 //        m.addAttribute("chatData", chat.getMessages().get(1).getSender().getFirstname());
         m.addAttribute("userData", user);
         m.addAttribute("loggedInUser", p.getName());
+        if (user != null){
+            m.addAttribute("messagesSender" , true);
+        }
 //        if(Objects.equals(p.getName(), chat.getMessages().get(1).getSender().getFirstname()))
         return "chat.html";
     }
