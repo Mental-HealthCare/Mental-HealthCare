@@ -240,10 +240,7 @@
                         <div class="card-block">
                             <h4 class="card-title" style="display: inline-block;}"
                                 th:text="${profileUser.getFirstname() + ' ' + profileUser.getLastname()}"></h4>
-                            <div class="text-center" style="display: inline-block; float: right;}">
-                                <a href="" class="btn btn-default btn-rounded mb-4" data-toggle="modal"
-                                   data-target="#modalRegisterForm">🖊️ Edit Profile</a>
-                            </div>
+
                             <div class="meta">
                                 <p th:text="${'Username: '+profileUser.getUsername()}"></p>
                             </div>
@@ -262,7 +259,7 @@
     <div class="footer-top">
         <div class="container">
             <div class="row justify-content-between">
-                <div class="col-lg-4 mb-5 mb-lg-0">
+                <div class="col-lg-5 mb-5 mb-lg-0">
                     <div class="about-widget">
                         <div class="footer-logo">
                             <h2>Lighthouse E-Clinic</h2>
@@ -272,7 +269,7 @@
                               </a>
                             </figure> -->
                         </div>
-                        <p>Lighthouse E-Clinic is a new and innovative online system that delivers clinical services to people experiencing mental health problems. The makes clinical care free and accessible to people wherever and whenever they need it.</p>
+                        <p style="width:90%">Lighthouse E-Clinic is a new and innovative online system that delivers clinical services to people experiencing mental health problems. The makes clinical care free and accessible to people wherever and whenever they need it.</p>
                         <ul class="location-link">
 
                             <li class="item">
@@ -303,7 +300,7 @@
                     </div>
                 </div>
                 <!--                    ToDo: Edit links-->
-                <div class="col-lg-3 col-md-5 mb-3 mb-md-0">
+                <div class="col-lg-2 col-md-5 mb-3 mb-md-0">
                     <h2>QUICK LINKS</h2>
                     <ul class="menu-link">
                         <li>
@@ -333,7 +330,7 @@
                                 <div class="media">
                                     <div class="media-left mr-3">
                                         <a th:href="@{/aware2}">
-                                            <img loading="lazy" src="/images/blog/15.jpg"
+                                            <img loading="lazy" src="images/blog/15.jpg"
                                                  alt="post-thumb">
                                         </a>
                                     </div>
@@ -347,7 +344,7 @@
                                 <div class="media">
                                     <div class="media-left mr-3">
                                         <a th:href="@{/aware1}">
-                                            <img loading="lazy" src="/images/blog/19.jpg"
+                                            <img loading="lazy" src="images/blog/19.jpg"
                                                  alt="post-thumb">
                                         </a>
                                     </div>
@@ -383,6 +380,7 @@
         </div>
     </div>
 </footer>
+
 <!-- scroll-to-top -->
 <div id="back-to-top" class="back-to-top">
     <i class="fa fa-angle-up"></i>

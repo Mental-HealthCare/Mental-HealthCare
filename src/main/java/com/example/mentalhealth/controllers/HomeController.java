@@ -58,8 +58,11 @@ public class HomeController {
     public String getAwarePage4() {
         return "blog-details3.html";
     }
-
-
+    @GetMapping("/about")
+    public String getaboutUsPage4() {
+        return "about.html";
+    }
+    
     @GetMapping("/")
     public String getHome(Principal p, Model model) {
         List list = (List) chatRepository.findAll();

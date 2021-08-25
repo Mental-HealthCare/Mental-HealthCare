@@ -6,6 +6,7 @@ import com.example.mentalhealth.repository.ApplicationUserRepository;
 import com.example.mentalhealth.repository.ConsultationRepository;
 import com.example.mentalhealth.repository.TherapistsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,14 +28,14 @@ public class ApplicationUserController {
     ConsultationRepository consultationRepository;
 
     @PostMapping("/signupUser")
-    public RedirectView addNewUser(@ModelAttribute ApplicationUser user) {
-        Therapists existUserName = therapistsRepository.findByUsername(user.getUsername());
-        if (existUserName == null) {
-            user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-            applicationUserRepository.save(user);
-        } else {    // handling error message exist username
-            System.out.println("Exist username");
-        }
+    public RedirectView addNewUser(@ModelAttribute ApplicationUser user, Model m) {
+            Therapists existUserName = therapistsRepository.findByUsername(user.getUsername());
+            if (existUserName == null) {
+                user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+                applicationUserRepository.save(user);
+            } else {    // handling error message exist username
+                System.out.println("Exist username");
+            }
         return new RedirectView("/login");
     }
 

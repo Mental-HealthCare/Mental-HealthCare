@@ -1,20 +1,17 @@
+<!--
+PROJECT: Medic | Medical HTML Template
+VERSION: 1.0.0
+AUTHOR: Themefisher
+WEBSITE: https://themefisher.com
+-->
+
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
 
     <!-- ** Basic Page Needs ** -->
-    <meta charset="UTF-8">
-    <title>Chat</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
-          integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css"
-          href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
-    <link rel="stylesheet" type="text/css" th:href="@{/css/chat.css}">
-    <script type="text/javascript"
-            src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.js"></script>
+    <meta charset="utf-8">
+    <title>About Us</title>
 
     <!-- ** Mobile Specific Metas ** -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -44,13 +41,12 @@
     <link href="css/style.css" rel="stylesheet">
 
     <!--Favicon-->
-    <link rel="icon" href="images/eee.png" type="image/x-icon">
+    <link rel="icon" href="images/favicon.png" type="image/x-icon">
 
 </head>
 
 
-<body >
-
+<body>
 <div class="page-wrapper">
 
     <!--Header Upper-->
@@ -134,130 +130,104 @@
     </nav>
     <!--End Main Header -->
     <!--Page Title-->
-    <section class="page-title text-center" style="background-image:url(/images/chat3.jpg);">
+    <section class="page-title text-center" style="background-image:url(images/background/team.jpg);">
         <div class="container">
             <div class="title-text">
-                <h1>Chat</h1>
+                <h1>about us</h1>
                 <ul class="title-menu clearfix">
                     <li>
                         <a href="index.html">home &nbsp;/</a>
                     </li>
-                    <li>chat</li>
+                    <li>about us</li>
                 </ul>
             </div>
         </div>
     </section>
     <!--End Page Title-->
 
+    <!-- our team start -->
     <section class="team-section section">
-        <div class="container-fluid h-100">
-            <div class="row justify-content-center h-100">
-                <div class="col-md-4 col-xl-3 chat">
-                    <div class="card mb-sm-3 mb-md-0 contacts_card">
-                        <div class="card-header">
-                            <div class="input-group">
-                                <h3 class="form-control search">Community Members</h3>
-                                <!--                    <div class="input-group-prepend">-->
-                                <!--                        <span class="input-group-text search_btn"><i class="fas fa-search"></i></span>-->
-                                <!--                    </div>-->
-                            </div>
+        <div class="container">
+            <div class="section-title text-center">
+                <h3>Our
+                    <span>Team</span>
+                </h3>
+                <p class="mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem illo, rerum
+                    <br>natus nobis deleniti doloremque minima odit voluptatibus ipsam animi?</p>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-3 col-md-6">
+                    <div class="team-member">
+                        <img loading="lazy" src="https://ca.slack-edge.com/TNGRRLUMA-U01RY3TABK5-fff716e543f3-512" alt="doctor" class="img-fluid">
+                        <div class="contents text-center">
+                            <h4>Maram <br> mustafa</h4>
+                            <p class="paragraphTeam">maram mustafa - fresh graduate from the University of Jordan from IT College with a major in Business Information Technology.</p>
+                            <a href="https://github.com/maram-mustafa" target="_blank" style="color: #424345">
+                                <i class="fab fa-github" style='font-size:40px; margin-right:10%'></i>
+                            </a>
+                            <a href="https://jo.linkedin.com/?trk=guest_homepage-basic_nav-header-logo" target="_blank" style="color: #424345">
+                                <i class="fab fa-linkedin" style='font-size:40px; margin-right:5%'></i>
+                            </a>
+
+<!--                            <i class="fab fa-facebook" style='font-size:40px; margin-right:5%'></i>-->
                         </div>
-                        <!--            Chat community-->
-                        <div class="card-body contacts_body">
-                            <ui class="contacts">
-                                <div th:each="oneUser: ${listOfUsers}">
-                                    <li class="active">
-                                        <div class="d-flex bd-highlight">
-                                            <div class="img_cont">
-                                                <img th:src="@{${oneUser.getImage()}}" class="rounded-circle user_img">
-                                                <!--                                    <span class="online_icon"></span>-->
-                                            </div>
-                                            <div class="user_info">
-                                                <span th:text="${oneUser.getFirstname()}+' '+${oneUser.getLastname()}"></span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </div>
-                            </ui>
-                        </div>
-                        <div class="card-footer"></div>
                     </div>
                 </div>
-                <div class="col-md-8 col-xl-6 chat">
-                    <div class="card">
-                        <div class="card-header msg_head">
-                            <!--                    head of chat + # message-->
-                            <div class="d-flex bd-highlight">
-                                <!--                        <div class="img_cont">-->
-                                <!--                            <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img">-->
-                                <!--                            <span class="online_icon"></span>-->
-                                <!--                        </div>-->
-                                <div class="user_info">
-                                    <span>LightHouse Chat</span>
-                                    <p th:text="${numberOfMessage}+' Messages'"></p>
-                                </div>
-                            </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="team-member">
+                        <img loading="lazy" src="https://ca.slack-edge.com/TNGRRLUMA-U01SV43UYRX-fb97fd05e00c-512" alt="doctor" class="img-fluid">
+                        <div class="contents text-center">
+                            <h4>Aseel<br> Dweedar</h4>
+                            <p class="paragraphTeam">She is software developer, looking for the best, learning, love reading, researching, and self-development.</p>
+                            <a href="https://github.com/Aseel-Dweedar" target="_blank" style="color: #424345">
+                                <i class="fab fa-github" style='font-size:40px; margin-right:10%'></i>
+                            </a>
+                            <a href="https://www.linkedin.com/in/aseel-dweedar/" target="_blank" style="color: #424345">
+                                <i class="fab fa-linkedin" style='font-size:40px; margin-right:5%'></i>
+                            </a>
+
+<!--                            <i class="fab fa-facebook" style='font-size:40px; margin-right:5%'></i>-->
                         </div>
-                        <div class="card-body msg_card_body">
-                            <div th:each="singleMessage: ${chatData}">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="team-member">
+                        <img loading="lazy" src="/images/Ayyoub.jpg" alt="doctor" class="img-fluid">
+                        <div class="contents text-center">
+                            <h4>Ayyoub<br> AlKeyyam</h4>
+                            <p class="paragraphTeam">Hard-working and ambitious full-stack developer with a great passion about the software industry.</p>
+                            <a href="https://github.com/ayyoubk" target="_blank" style="color: #424345">
+                                <i class="fab fa-github" style='font-size:40px; margin-right:10%'></i>
+                            </a>
+                            <a href="https://www.linkedin.com/in/ayyoubk/" target="_blank" style="color: #424345">
+                                <i class="fab fa-linkedin" style='font-size:40px; margin-right:5%'></i>
+                            </a>
 
-                                <div th:if="${loggedInUser==singleMessage.getSender().getUsername()}"
-                                     class="d-flex justify-content-start mb-4">
-                                    <div class="img_cont_msg">
-
-                                        <img th:src="@{${singleMessage.getSender().getImage()}}"
-                                             class="rounded-circle user_img_msg">
-                                    </div>
-                                    <div style="width: fit-content ;max-width:60%">
-                                        <div class="msg_cotainer">
-                                        <span th:text="${singleMessage.getBody()}"></span>
-                                        </div>
-                                        <div style="font-size:9px; display: contents;" class="msg_time" th:text="${singleMessage.getTime()}+' '+${singleMessage.getSender().getFirstname()}"></div>
-                                    </div>
-                                </div>
-                                <div th:unless="${loggedInUser==singleMessage.getSender().getUsername()}"
-                                     class="d-flex justify-content-end mb-4">
-                                    <div style="width: fit-content ;max-width:60%">
-                                        <div class="msg_cotainer_send">
-                                            <span th:text="${singleMessage.getBody()}"></span>
-                                        </div>
-                                        <div style="font-size:9px; display: contents;" class="msg_time_send" th:text="${singleMessage.getTime()}+' '+${singleMessage.getSender().getFirstname()}"></div>
-                                    </div>
-                                    <div class="img_cont_msg">
-                                        <img th:src="@{${singleMessage.getSender().getImage()}}"
-                                             class="rounded-circle user_img_msg">
-                                    </div>
-
-                                </div>
-                                <!---->
-                            </div>
+<!--                            <i class="fab fa-facebook" style='font-size:40px; margin-right:5%'></i>-->
                         </div>
-                        <div th:if="${messagesSender}" class="card-footer">
-                            <form th:action="@{/sentMassage}" method="post">
-                                <div class="input-group">
-                                    <!--                        <div class="input-group-append">-->
-                                    <!--                            <span class="input-group-text attach_btn"><i class="fas fa-paperclip"></i></span>-->
-                                    <!--                        </div>-->
-                                    <!--                        <textarea name="" class="form-control type_msg" placeholder="Type your message..."></textarea>-->
-                                    <!--                        <div class="input-group-append">-->
-                                    <!--                            <span class="input-group-text send_btn"><i class="fas fa-location-arrow"></i></span>-->
-                                    <!--                        </div>-->
-                                    <textarea class="form-control type_msg" name="body"
-                                              placeholder="Type your message..."></textarea>
-                                    <div class="input-group-append">
-                                <span class="input-group-text send_btn"><button id="sentBtn" type="submit"><i
-                                        class="fas fa-location-arrow"></i></button></span>
-                                    </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="team-member">
+                        <img loading="lazy" src="https://ca.slack-edge.com/TNGRRLUMA-U01RH48PV1D-5098f52e2dd3-192" alt="doctor" class="img-fluid">
+                        <div class="contents text-center">
+                            <h4>Ibrahim<br> Alhamshari</h4>
+                            <p class="paragraphTeam">He is a software developer likes reading books, and he is also interested in software development.</p>
+                            <a href="https://github.com/ibrahim-alhamshari" target="_blank" style="color: #424345">
+                            <i class="fab fa-github" style='font-size:40px; margin-right:10%'></i>
+                            </a>
+                            <a href="https://www.linkedin.com/in/ibrahim-alhamshari" target="_blank" style="color: #424345">
+                                <i class="fab fa-linkedin" style='font-size:40px; margin-right:5%'></i>
+                            </a>
 
-                                </div>
-                            </form>
-
+<!--                            <i class="fab fa-facebook" style='font-size:40px; margin-right:5%'></i>-->
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    <!-- our team end -->
 
     <!--footer-main-->
     <footer class="footer-main">
@@ -385,6 +355,7 @@
             </div>
         </div>
     </footer>
+
 
     <!-- scroll-to-top -->
     <div id="back-to-top" class="back-to-top">
