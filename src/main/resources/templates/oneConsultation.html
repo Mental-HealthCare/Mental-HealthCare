@@ -238,8 +238,7 @@
                                     <img th:src="${oneConsultation.getApplicationUser().getImage()}"
                                          style="width:3rem ; border-radius: 50%; vertical-align: top;"/>
                                     <div style=" display: inline-block; max-width: 70%;">
-                                        <p th:text="${oneResponse.getBody()}"
-                                           style="border:1px solid #93B5C6; border-radius: 1rem; padding:0.3rem; margin-bottom:0px;display:inline; background-color: #C9CCD5;"></p>
+                                        <div style="border:1px solid #93B5C6; border-radius: 1rem; padding:0.3rem; margin-bottom:0px;display:inline; background-color: #C9CCD5;"><p th:text="${oneResponse.getBody()}"></p></div>
                                         <div th:if="${!testButton}">
                                             <form th:action="@{/showEditResponseForm/{consultationId}/{responseId}(consultationId=${oneConsultation.getId()}, responseId=${oneResponse.getId()})}"
                                                   style="display: inline-block;"
