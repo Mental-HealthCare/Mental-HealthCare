@@ -1674,6 +1674,8 @@ button:focus {
   padding-bottom: 30px;
 }
 
+
+
 .team-section .team-member {
   margin-top: 30px;
   border-radius: 10px;
@@ -1708,6 +1710,10 @@ button:focus {
   left: 50%;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
+}
+
+.paragraphTeam{
+height:144px
 }
 
 .team-section .team-member .contents .btn-main {
