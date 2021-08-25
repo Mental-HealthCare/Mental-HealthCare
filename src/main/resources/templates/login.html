@@ -135,7 +135,7 @@
   <!--End Main Header -->
 
 <div class="container">
-  <div class="card card-container">
+  <div class="card card-container" style="height:45rem;">
     <img id="profile-img" class="profile-img-card" loading="lazy" src="/images/eee.png" alt="logo" />
     <p id="profile-name" class="profile-name-card"></p>
     <form class="form-signin" action="/perform_login" method="post">
@@ -147,7 +147,7 @@
           <input type="checkbox" value="remember-me"> Remember me
         </label>
       </div>
-      <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
+      <button class="btn btn-info" type="submit" style="margin-top:3rem; background-color: #48bdc5; ">Sign in</button>
     </form><!-- /form -->
     <a th:href="@{/signup}" class="forgot-password">
       New here? Sign-up
@@ -156,132 +156,132 @@
 </div><!-- /container -->
 
 
-<!--footer-main-->
-<footer class="footer-main">
-  <div class="footer-top">
-    <div class="container">
-      <div class="row justify-content-between">
-        <div class="col-lg-4 mb-5 mb-lg-0">
-          <div class="about-widget">
-            <div class="footer-logo">
-              <h2>Lighthouse E-Clinic</h2>
-              <!-- <figure>
-                <a href="index.html">
-                  <img loading="lazy" class="img-fluid" src="images/eee.png" alt="medic" >
-                </a>
-              </figure> -->
+  <!--footer-main-->
+  <footer class="footer-main">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col-lg-5 mb-5 mb-lg-0">
+            <div class="about-widget">
+              <div class="footer-logo">
+                <h2>Lighthouse E-Clinic</h2>
+                <!-- <figure>
+                  <a href="index.html">
+                    <img loading="lazy" class="img-fluid" src="images/eee.png" alt="medic" >
+                  </a>
+                </figure> -->
+              </div>
+              <p style="width:90%">Lighthouse E-Clinic is a new and innovative online system that delivers clinical services to people experiencing mental health problems. The makes clinical care free and accessible to people wherever and whenever they need it.</p>
+              <ul class="location-link">
+
+                <li class="item">
+                  <i class="far fa-envelope" aria-hidden="true"></i>
+                  <a href="mailto:support@medic.com">
+                    <p>support@lighthouse.com</p>
+                  </a>
+                </li>
+                <li class="item">
+                  <i class="fas fa-phone" aria-hidden="true"></i>
+                  <p>(+962) 123 4567</p>
+                </li>
+              </ul>
+              <ul class="list-inline social-icons">
+                <li class="list-inline-item"><a href="https://github.com/Mental-HealthCare/Mental-HealthCare"
+                                                aria-label="facebook"><i class="fab fa-facebook-f"></i></a>
+                </li>
+                <li class="list-inline-item"><a href="https://github.com/Mental-HealthCare/Mental-HealthCare"
+                                                aria-label="twitter"><i class="fab fa-twitter"></i></a>
+                </li>
+                <li class="list-inline-item"><a href="https://github.com/Mental-HealthCare/Mental-HealthCare"
+                                                aria-label="instagram"><i class="fab fa-instagram"></i></a>
+                </li>
+                <li class="list-inline-item"><a href="https://github.com/Mental-HealthCare/Mental-HealthCare"
+                                                aria-label="github"><i class="fab fa-github"></i></a>
+                </li>
+              </ul>
             </div>
-            <p>Lighthouse E-Clinic is a new and innovative online system that delivers clinical services to people experiencing mental health problems. The makes clinical care free and accessible to people wherever and whenever they need it.</p>
-            <ul class="location-link">
+          </div>
+          <!--                    ToDo: Edit links-->
+          <div class="col-lg-2 col-md-5 mb-3 mb-md-0">
+            <h2>QUICK LINKS</h2>
+            <ul class="menu-link">
+              <li>
+                <a th:href="@{/}">
+                  <i class="fa fa-angle-right" aria-hidden="true"></i>Home</a>
+              </li>
+              <li>
+                <a th:href="@{/aware}">
+                  <i class="fa fa-angle-right" aria-hidden="true"></i>Awareness</a>
+              </li>
+              <li>
+                <a th:href="@{/allTherapists}">
+                  <i class="fa fa-angle-right" aria-hidden="true"></i>Therapists</a>
+              </li>
+              <li>
+                <a th:href="@{/about}">
+                  <i class="fa fa-angle-right" aria-hidden="true"></i>About Us</a>
+              </li>
 
-              <li class="item">
-                <i class="far fa-envelope" aria-hidden="true"></i>
-                <a href="mailto:support@medic.com">
-                  <p>support@lighthouse.com</p>
-                </a>
-              </li>
-              <li class="item">
-                <i class="fas fa-phone" aria-hidden="true"></i>
-                <p>(+962) 123 4567</p>
-              </li>
-            </ul>
-            <ul class="list-inline social-icons">
-              <li class="list-inline-item"><a href="https://github.com/Mental-HealthCare/Mental-HealthCare"
-                                              aria-label="facebook"><i class="fab fa-facebook-f"></i></a>
-              </li>
-              <li class="list-inline-item"><a href="https://github.com/Mental-HealthCare/Mental-HealthCare"
-                                              aria-label="twitter"><i class="fab fa-twitter"></i></a>
-              </li>
-              <li class="list-inline-item"><a href="https://github.com/Mental-HealthCare/Mental-HealthCare"
-                                              aria-label="instagram"><i class="fab fa-instagram"></i></a>
-              </li>
-              <li class="list-inline-item"><a href="https://github.com/Mental-HealthCare/Mental-HealthCare"
-                                              aria-label="github"><i class="fab fa-github"></i></a>
-              </li>
             </ul>
           </div>
-        </div>
-        <!--                    ToDo: Edit links-->
-        <div class="col-lg-3 col-md-5 mb-3 mb-md-0">
-          <h2>QUICK LINKS</h2>
-          <ul class="menu-link">
-            <li>
-              <a th:href="@{/}">
-                <i class="fa fa-angle-right" aria-hidden="true"></i>Home</a>
-            </li>
-            <li>
-              <a th:href="@{/aware}">
-                <i class="fa fa-angle-right" aria-hidden="true"></i>Awareness</a>
-            </li>
-            <li>
-              <a th:href="@{/allTherapists}">
-                <i class="fa fa-angle-right" aria-hidden="true"></i>Therapists</a>
-            </li>
-            <li>
-              <a th:href="@{/about}">
-                <i class="fa fa-angle-right" aria-hidden="true"></i>About Us</a>
-            </li>
-
-          </ul>
-        </div>
-        <div class="col-lg-4 col-md-7">
-          <div class="social-links">
-            <h2>Recent Posts</h2>
-            <ul>
-              <li class="item">
-                <div class="media">
-                  <div class="media-left mr-3">
-                    <a th:href="@{/aware2}">
-                      <img loading="lazy" src="images/blog/15.jpg"
-                           alt="post-thumb">
-                    </a>
+          <div class="col-lg-4 col-md-7">
+            <div class="social-links">
+              <h2>Recent Posts</h2>
+              <ul>
+                <li class="item">
+                  <div class="media">
+                    <div class="media-left mr-3">
+                      <a th:href="@{/aware2}">
+                        <img loading="lazy" src="images/blog/15.jpg"
+                             alt="post-thumb">
+                      </a>
+                    </div>
+                    <div class="media-body">
+                      <h5><a th:href="@{/aware2}">Personality disorders</a></h5>
+                      <p>Our personality is the collection of thoughts, feelings and behaviours that makes each of us the individuals we are.</p>
+                    </div>
                   </div>
-                  <div class="media-body">
-                    <h5><a th:href="@{/aware2}">Personality disorders</a></h5>
-                    <p>Our personality is the collection of thoughts, feelings and behaviours that makes each of us the individuals we are.</p>
+                </li>
+                <li class="item">
+                  <div class="media">
+                    <div class="media-left mr-3">
+                      <a th:href="@{/aware1}">
+                        <img loading="lazy" src="images/blog/19.jpg"
+                             alt="post-thumb">
+                      </a>
+                    </div>
+                    <div class="media-body">
+                      <h5><a th:href="@{/aware1}">Obsessive-compulsive disorder (OCD)</a></h5>
+                      <p>Obsessions are unwelcome thoughts, images, urges, worries or doubts that repeatedly appear in your mind.</p>
+                    </div>
                   </div>
-                </div>
-              </li>
-              <li class="item">
-                <div class="media">
-                  <div class="media-left mr-3">
-                    <a th:href="@{/aware1}">
-                      <img loading="lazy" src="images/blog/19.jpg"
-                           alt="post-thumb">
-                    </a>
-                  </div>
-                  <div class="media-body">
-                    <h5><a th:href="@{/aware1}">Obsessive-compulsive disorder (OCD)</a></h5>
-                    <p>Obsessions are unwelcome thoughts, images, urges, worries or doubts that repeatedly appear in your mind.</p>
-                  </div>
-                </div>
-              </li>
-            </ul>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="footer-bottom">
-    <div class="container clearfix">
-      <div class="copyright-text">
-        <p>&copy; Copyright 2021. by <a
-                href="https://github.com/Mental-HealthCare/Mental-HealthCare">Mental Health Clinic Team</a></p>
+    <div class="footer-bottom">
+      <div class="container clearfix">
+        <div class="copyright-text">
+          <p>&copy; Copyright 2021. by <a
+                  href="https://github.com/Mental-HealthCare/Mental-HealthCare">Mental Health Clinic Team</a></p>
+        </div>
+        <ul class="footer-bottom-link">
+          <li>
+            <a href="index.html">Home</a>
+          </li>
+          <li>
+            <a href="about.html">About</a>
+          </li>
+          <li>
+            <a href="https://github.com/Mental-HealthCare/Mental-HealthCare">Contact</a>
+          </li>
+        </ul>
       </div>
-      <ul class="footer-bottom-link">
-        <li>
-          <a href="index.html">Home</a>
-        </li>
-        <li>
-          <a href="about.html">About</a>
-        </li>
-        <li>
-          <a href="https://github.com/Mental-HealthCare/Mental-HealthCare">Contact</a>
-        </li>
-      </ul>
     </div>
-  </div>
-</footer>
+  </footer>
 
 <!-- scroll-to-top -->
 <div id="back-to-top" class="back-to-top">

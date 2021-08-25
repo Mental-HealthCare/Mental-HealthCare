@@ -3094,6 +3094,7 @@ height:144px
 .footer-main .footer-top .media-left img {
   height: 80px;
   width: 80px;
+  object-fit: cover;
 }
 
 .footer-main .footer-top .social-links ul {

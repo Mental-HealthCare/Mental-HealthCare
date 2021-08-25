@@ -30,6 +30,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.cors().disable().csrf().disable().authorizeRequests().antMatchers("/login", "/signup", "/", "/aware", "/signupTherapists", "/signupUser" , "/allTherapists", "/css/*.css" , "/css/**","/static/**", "/resources/**","/.*.css", "/images/**", "/.*.js" , "/*.js" , "/js/**" , "/plugins/**" , "/about" ).permitAll().anyRequest().authenticated().and().formLogin().loginPage("/login").loginProcessingUrl("/perform_login").defaultSuccessUrl("/", true).failureUrl("/error").and().logout().logoutUrl("/perform_logout").deleteCookies("JSESSIONID");
+        http.cors().disable().csrf().disable().authorizeRequests().antMatchers("/login", "/signup", "/", "/aware", "/signupTherapists", "/signupUser" , "/allTherapists", "/css/*.css" , "/css/**","/static/**", "/resources/**","/.*.css", "/images/**", "/.*.js" , "/*.js" , "/js/**" , "/plugins/**" , "/about", "/aware1","/aware2","/aware3","/aware4" ).permitAll().anyRequest().authenticated().and().formLogin().loginPage("/login").loginProcessingUrl("/perform_login").defaultSuccessUrl("/", true).failureUrl("/error").and().logout().logoutUrl("/perform_logout").deleteCookies("JSESSIONID");
     }
 }

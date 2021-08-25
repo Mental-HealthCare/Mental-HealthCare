@@ -184,7 +184,8 @@
                             <p th:text="${oneConsultation.getBody()}"></p>
                         </div>
                         <div>
-                            <div class="text-center" style="display: inline-block; float: right; color: white;">
+                            <div th:if="${updateConsultationButton}" class="text-center"
+                                 style="display: inline-block; float: right; color: white;">
                                 <a class="btn btn-info" data-toggle="modal" style="flout:right;"
                                    data-target="#modalRegisterForm">Edit Your Consultation</a>
                             </div>
@@ -197,7 +198,7 @@
                       th:action="@{/editResponse/{consultationId}/{responseId}(consultationId=${oneConsultation.getId()}, responseId=${responseToEdit.getId()})}"
                       method="get">
                     <input class="form-control" name="body" th:value="${responseToEdit.getBody()}"
-                          style="    width: 80%; display: inline-block; margin: 1rem;" required></input>
+                           style="    width: 80%; display: inline-block; margin: 1rem;" required></input>
                     <button class="btn btn-outline-info" type="submit">Save changes</button>
                 </form>
                 <!-------------------------------------End of edit response form---------------------------------------------->
@@ -212,7 +213,7 @@
                                      style="text-align: right;float:right;display:block; width: 100%;    margin-bottom: 1.5rem;">
                                     <div style=" display: inline-block; max-width: 70%;">
                                         <p th:text="${oneResponse.getBody()}"
-                                           style="border:1px solid #BFA2DB; border-radius: 1rem; padding:0.3rem; margin-bottom:0px;display:inline; background-color: #F0D9FF;"></p>
+                                           style="border:1px solid #BFA2DB; border-radius: 1rem; padding:0.3rem; margin-bottom:0px; background-color: #F0D9FF;"></p>
                                         <div th:if="${testButton}">
                                             <form th:action="@{/showEditResponseForm/{consultationId}/{responseId}(consultationId=${oneConsultation.getId()}, responseId=${oneResponse.getId()})}"
                                                   style="display: inline-block;"
@@ -238,7 +239,8 @@
                                     <img th:src="${oneConsultation.getApplicationUser().getImage()}"
                                          style="width:3rem ; border-radius: 50%; vertical-align: top;"/>
                                     <div style=" display: inline-block; max-width: 70%;">
-                                        <p th:text="${oneResponse.getBody()}" style="border:1px solid #93B5C6; border-radius: 1rem; padding:0.3rem; margin-bottom:0px;display:inline; background-color: #C9CCD5;"></p>
+                                        <p th:text="${oneResponse.getBody()}"
+                                           style="border:1px solid #93B5C6; border-radius: 1rem; padding:0.3rem; margin-bottom:0px; background-color: #C9CCD5;"></p>
                                         <div th:if="${!testButton}">
                                             <form th:action="@{/showEditResponseForm/{consultationId}/{responseId}(consultationId=${oneConsultation.getId()}, responseId=${oneResponse.getId()})}"
                                                   style="display: inline-block;"
@@ -277,24 +279,7 @@
 
             <!--profile card section-->
             <div class="col-lg-3 mb-4 mb-lg-0 order-0 order-lg-1" style="">
-                <div style="margin-bottom:1rem;">
-                    <div class="card">
-                        <img
-                                class="card-img-top"
-                                th:src="${oneConsultation.getTherapists().getImage()}"
-                        />
-                        <div class="card-block">
-                            <h4 class="card-title" style="display: inline-block;}"
-                                th:text="${oneConsultation.getTherapists().getFirstname() + ' ' + oneConsultation.getTherapists().getLastname()}"></h4>
-                            <div class="meta">
-                                <p th:text="${'Username: '+oneConsultation.getTherapists().getUsername()}"></p>
-                            </div>
-                            <div class="card-text"
-                                 th:text="${'Country: '+oneConsultation.getTherapists().getCountry()}"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
+                <div class="card" th:if="${testButton}">
                     <img
                             class="card-img-top"
                             th:src="${oneConsultation.getApplicationUser().getImage()}"
@@ -309,6 +294,22 @@
                              th:text="${'Country: '+oneConsultation.getApplicationUser().getCountry()}"></div>
                     </div>
                 </div>
+                <div th:unless="${testButton}" class="card">
+                    <img
+                            class="card-img-top"
+                            th:src="${oneConsultation.getTherapists().getImage()}"
+                    />
+                    <div class="card-block">
+                        <h4 class="card-title" style="display: inline-block;}"
+                            th:text="${oneConsultation.getTherapists().getFirstname() + ' ' + oneConsultation.getTherapists().getLastname()}"></h4>
+                        <div class="meta">
+                            <p th:text="${'Username: '+oneConsultation.getTherapists().getUsername()}"></p>
+                        </div>
+                        <div class="card-text"
+                             th:text="${'Country: '+oneConsultation.getTherapists().getCountry()}"></div>
+                    </div>
+                </div>
+
             </div>
             <!--profile card section-->
         </div>
@@ -320,17 +321,19 @@
     <div class="footer-top">
         <div class="container">
             <div class="row justify-content-between">
-                <div class="col-lg-4 mb-5 mb-lg-0">
+                <div class="col-lg-5 mb-5 mb-lg-0">
                     <div class="about-widget">
                         <div class="footer-logo">
                             <h2>Lighthouse E-Clinic</h2>
                             <!-- <figure>
                               <a href="index.html">
-                                <img loading="lazy" class="img-fluid" src="/images/eee.png" alt="medic" >
+                                <img loading="lazy" class="img-fluid" src="images/eee.png" alt="medic" >
                               </a>
                             </figure> -->
                         </div>
-                        <p>Lighthouse E-Clinic is a new and innovative online system that delivers clinical services to people experiencing mental health problems. The makes clinical care free and accessible to people wherever and whenever they need it.</p>
+                        <p style="width:90%">Lighthouse E-Clinic is a new and innovative online system that delivers
+                            clinical services to people experiencing mental health problems. The makes clinical care
+                            free and accessible to people wherever and whenever they need it.</p>
                         <ul class="location-link">
 
                             <li class="item">
@@ -345,23 +348,27 @@
                             </li>
                         </ul>
                         <ul class="list-inline social-icons">
-                            <li class="list-inline-item"><a href="https://github.com/Mental-HealthCare/Mental-HealthCare"
-                                                            aria-label="facebook"><i class="fab fa-facebook-f"></i></a>
+                            <li class="list-inline-item"><a
+                                    href="https://github.com/Mental-HealthCare/Mental-HealthCare"
+                                    aria-label="facebook"><i class="fab fa-facebook-f"></i></a>
                             </li>
-                            <li class="list-inline-item"><a href="https://github.com/Mental-HealthCare/Mental-HealthCare"
-                                                            aria-label="twitter"><i class="fab fa-twitter"></i></a>
+                            <li class="list-inline-item"><a
+                                    href="https://github.com/Mental-HealthCare/Mental-HealthCare"
+                                    aria-label="twitter"><i class="fab fa-twitter"></i></a>
                             </li>
-                            <li class="list-inline-item"><a href="https://github.com/Mental-HealthCare/Mental-HealthCare"
-                                                            aria-label="instagram"><i class="fab fa-instagram"></i></a>
+                            <li class="list-inline-item"><a
+                                    href="https://github.com/Mental-HealthCare/Mental-HealthCare"
+                                    aria-label="instagram"><i class="fab fa-instagram"></i></a>
                             </li>
-                            <li class="list-inline-item"><a href="https://github.com/Mental-HealthCare/Mental-HealthCare"
-                                                            aria-label="github"><i class="fab fa-github"></i></a>
+                            <li class="list-inline-item"><a
+                                    href="https://github.com/Mental-HealthCare/Mental-HealthCare"
+                                    aria-label="github"><i class="fab fa-github"></i></a>
                             </li>
                         </ul>
                     </div>
                 </div>
                 <!--                    ToDo: Edit links-->
-                <div class="col-lg-3 col-md-5 mb-3 mb-md-0">
+                <div class="col-lg-2 col-md-5 mb-3 mb-md-0">
                     <h2>QUICK LINKS</h2>
                     <ul class="menu-link">
                         <li>
@@ -391,13 +398,14 @@
                                 <div class="media">
                                     <div class="media-left mr-3">
                                         <a th:href="@{/aware2}">
-                                            <img loading="lazy" src="/images/blog/15.jpg"
+                                            <img loading="lazy" src="images/blog/15.jpg"
                                                  alt="post-thumb">
                                         </a>
                                     </div>
                                     <div class="media-body">
                                         <h5><a th:href="@{/aware2}">Personality disorders</a></h5>
-                                        <p>Our personality is the collection of thoughts, feelings and behaviours that makes each of us the individuals we are.</p>
+                                        <p>Our personality is the collection of thoughts, feelings and behaviours that
+                                            makes each of us the individuals we are.</p>
                                     </div>
                                 </div>
                             </li>
@@ -405,13 +413,14 @@
                                 <div class="media">
                                     <div class="media-left mr-3">
                                         <a th:href="@{/aware1}">
-                                            <img loading="lazy" src="/images/blog/19.jpg"
+                                            <img loading="lazy" src="images/blog/19.jpg"
                                                  alt="post-thumb">
                                         </a>
                                     </div>
                                     <div class="media-body">
                                         <h5><a th:href="@{/aware1}">Obsessive-compulsive disorder (OCD)</a></h5>
-                                        <p>Obsessions are unwelcome thoughts, images, urges, worries or doubts that repeatedly appear in your mind.</p>
+                                        <p>Obsessions are unwelcome thoughts, images, urges, worries or doubts that
+                                            repeatedly appear in your mind.</p>
                                     </div>
                                 </div>
                             </li>
@@ -441,6 +450,7 @@
         </div>
     </div>
 </footer>
+
 <!-- scroll-to-top -->
 <div id="back-to-top" class="back-to-top">
     <i class="fa fa-angle-up"></i>
