@@ -58,6 +58,10 @@ public class HomeController {
     public String getAwarePage4() {
         return "blog-details3.html";
     }
+    @GetMapping("/about")
+    public String getaboutUsPage4() {
+        return "about.html";
+    }
 
 
     @GetMapping("/")

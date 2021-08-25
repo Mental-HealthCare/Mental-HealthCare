@@ -240,10 +240,7 @@
                         <div class="card-block">
                             <h4 class="card-title" style="display: inline-block;}"
                                 th:text="${profileUser.getFirstname() + ' ' + profileUser.getLastname()}"></h4>
-                            <div class="text-center" style="display: inline-block; float: right;}">
-                                <a href="" class="btn btn-default btn-rounded mb-4" data-toggle="modal"
-                                   data-target="#modalRegisterForm">🖊️ Edit Profile</a>
-                            </div>
+
                             <div class="meta">
                                 <p th:text="${'Username: '+profileUser.getUsername()}"></p>
                             </div>

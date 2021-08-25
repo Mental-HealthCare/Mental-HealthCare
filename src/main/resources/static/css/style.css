@@ -136,7 +136,7 @@ li {
   font-weight: 600;
   color: #ffffff;
   line-height: 27px;
-  padding: 8px 36px;
+  padding: 8px 18px;
   background: #48bdc5;
   border: 1px solid #48bdc5;
   display: inline-block;
@@ -1674,6 +1674,8 @@ button:focus {
   padding-bottom: 30px;
 }
 
+
+
 .team-section .team-member {
   margin-top: 30px;
   border-radius: 10px;
@@ -1708,6 +1710,10 @@ button:focus {
   left: 50%;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
+}
+
+.paragraphTeam{
+height:144px
 }
 
 .team-section .team-member .contents .btn-main {

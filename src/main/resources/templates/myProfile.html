@@ -176,7 +176,7 @@
                                             aria-labelledby="headingOne"
                                             data-parent="#accordionGroup"
                                     >
-                                        <div class="card-body" style="height: 20rem; overflow: auto;">
+                                        <div class="card-body" style="max-height: 20rem; overflow: auto;">
                                             <div th:each="oneConsultation: ${Consultations}" class="list-group">
                                                 <div th:if="${!oneConsultation.isTaken()}">
                                                     <div class="d-flex w-100 justify-content-between">
