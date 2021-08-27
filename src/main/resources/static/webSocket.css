@@ -4,5 +4,24 @@ body{
     background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,113,121,0.6) 0%, rgb(224, 173, 158) 100%);
 }
 
+.usernameClass{
+    color: rgb(250, 0, 0);
+    margin: 0%;
+}
+
+.messageClass{
+    display:inline-block;
+    border: 5px solid green;
+    border-radius: 25px 0 25px 0;
+    padding: 10px;
+    color: #000;
+    margin: 0%;
+    background-color: green;
+}
+
+.hourClass{
+    color: rgb(0, 117, 212);
+    margin: 0%;
+}
 
 

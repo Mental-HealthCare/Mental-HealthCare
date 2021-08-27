@@ -32,7 +32,7 @@ public class WebSocketController {
         ChatMessage chatMessage = new ChatMessage(p.getName(), message, time );
         webSocketRepo.save(chatMessage);
 
-        return message + " #$% "+p.getName() + " #$% " +time;
+        return  p.getName() + " #$% "+message+ " #$% " +time;
     }
 
 
